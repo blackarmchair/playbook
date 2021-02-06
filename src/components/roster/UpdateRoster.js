@@ -8,7 +8,7 @@ import {
 	makeStyles,
 	Typography,
 } from '@material-ui/core';
-import Player from '../../components/roster/player';
+import Player from './Player';
 import { database } from '../../../services/firebase/index';
 import * as formatters from '../../../helpers/formatters';
 
