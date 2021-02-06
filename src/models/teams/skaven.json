@@ -1,0 +1,84 @@
+{
+    "name": "Skaven",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 50000
+    },
+    "tier": 1,
+    "apothecary": true,
+    "specialRules": ["Underworld Challenge"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 16 },
+            "position": "Skaven Clanrat Linemen",
+            "cost": 50000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": [],
+            "primary": ["G"],
+            "secondary": ["A", "M", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Throwers",
+            "cost": 85000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 2 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Pass", "Sure Hands"],
+            "primary": ["G", "P"],
+            "secondary": ["A", "M", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 4 },
+            "position": "Gutter Runners",
+            "cost": 85000,
+            "MA": { "type": "number", "value": 9 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge"],
+            "primary": ["A", "G"],
+            "secondary": ["M", "P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Blitzers",
+            "cost": 90000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Block"],
+            "primary": ["G", "S"],
+            "secondary": ["A", "M", "P"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Rat Ogre",
+            "cost": 150000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [
+                "Animal Savagery",
+                "Frenzy",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Prehensile Tail"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "M"]
+        }
+    ]
+}

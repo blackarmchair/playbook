@@ -1,0 +1,99 @@
+{
+    "name": "Chaos Chosen",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 60000
+    },
+    "tier": 2,
+    "apothecary": true,
+    "specialRules": ["Favored of..."],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 16 },
+            "position": "Beastman Runner Lineman",
+            "cost": 60000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Horns"],
+            "primary": ["G", "M", "S"],
+            "secondary": ["A", "P"]
+        },
+        {
+            "quantity": { "min": 0, "max": 4 },
+            "position": "Chosen Blocker",
+            "cost": 100000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 4 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [],
+            "primary": ["G", "M", "S"],
+            "secondary": ["A"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Chaos Troll",
+            "cost": 115000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Always Hungry",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Projectile Vomit",
+                "Really Stupid",
+                "Regeneration",
+                "Throw Team-Mate"
+            ],
+            "primary": ["M", "S"],
+            "secondary": ["A", "G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Chaos Ogre",
+            "cost": 140000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Bone Head",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Thick Skull",
+                "Throw Team-Mate"
+            ],
+            "primary": ["M", "S"],
+            "secondary": ["A", "G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Minotaur",
+            "cost": 150000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [
+                "Loner (4+)",
+                "Frenzy",
+                "Horns",
+                "Mighty Blow (+1)",
+                "Thick Skull",
+                "Unchanneled Fury"
+            ],
+            "primary": ["M", "S"],
+            "secondary": ["A", "G"]
+        }
+    ]
+}

@@ -1,0 +1,142 @@
+{
+    "name": "Underworld Denizens",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 70000
+    },
+    "tier": 2,
+    "apothecary": true,
+    "specialRules": ["Underworld Challenge", "Bribery & Corruption"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Underworld Goblin Linemen",
+            "cost": 40000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge", "Right Stuff", "Stunty"],
+            "primary": ["A", "M"],
+            "secondary": ["G", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 6 },
+            "position": "Underworld Snotlings",
+            "cost": 15000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 1 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 6 },
+            "skills": [
+                "Dodge",
+                "Right Stuff",
+                "Side Step",
+                "Stunty",
+                "Swarming",
+                "Titchy"
+            ],
+            "primary": ["A", "M"],
+            "secondary": ["G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 3 },
+            "position": "Skaven Clanrat",
+            "cost": 50000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": [],
+            "primary": ["G", "M"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Skaven Thrower",
+            "cost": 85000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 2 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": [
+                "Animosity (Underworld Goblin Lineman)",
+                "Pass",
+                "Sure Hands"
+            ],
+            "primary": ["G", "M", "P"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Gutter Runner",
+            "cost": 85000,
+            "MA": { "type": "number", "value": 9 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Animosity (Underworld Goblin Lineman)", "Dodge"],
+            "primary": ["A", "G", "M"],
+            "secondary": ["P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Skaven Blitzers",
+            "cost": 90000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Animosity (Underworld Goblin Lineman)", "Block"],
+            "primary": ["G", "M", "S"],
+            "secondary": ["A", "P"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Underworld Troll",
+            "cost": 115000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Always Hungry",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Projectile Vomit",
+                "Really Stupid",
+                "Regeneration",
+                "Throw Team-Mate"
+            ],
+            "primary": ["M", "S"],
+            "secondary": ["A", "G", "P"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Mutant Rat Ogre",
+            "cost": 150000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [
+                "Animal Savagery",
+                "Frenzy",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Prehensile Tail"
+            ],
+            "primary": ["M", "S"],
+            "secondary": ["A", "G"]
+        }
+    ]
+}

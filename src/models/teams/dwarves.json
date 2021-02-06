@@ -1,0 +1,87 @@
+{
+    "name": "Dwarf",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 50000
+    },
+    "tier": 1,
+    "apothecary": true,
+    "specialRules": ["Old World Classic", "World's Edge Superleague"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Dwarf Blocker Linemen",
+            "cost": 70000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Block", "Tackle", "Thick Skull"],
+            "primary": ["G", "S"],
+            "secondary": ["A"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Runners",
+            "cost": 85000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Sure Hands", "Thick Skull"],
+            "primary": ["G", "P"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Blitzers",
+            "cost": 80000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Block", "Thick Skull"],
+            "primary": ["G", "S"],
+            "secondary": ["A", "P"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Troll Slayers",
+            "cost": 95000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Block", "Dauntless", "Frenzy", "Thick Skull"],
+            "primary": ["G", "S"],
+            "secondary": ["A"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Deathroller",
+            "cost": 170000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 7 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 11 },
+            "skills": [
+                "Break Tackle",
+                "Dirty Player (+2)",
+                "Juggernaut",
+                "Loner (5+)",
+                "Mighty Blow (+1)",
+                "No Hands",
+                "Secret Weapon",
+                "Stand Firm"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G"]
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "Random Primary": 10000,
+    "Chosen Primary": 20000,
+    "Random Secondary": 20000,
+    "Chosen Secondary": 40000,
+    "Random Characteristic": 30000,
+    "avImprovement": 10000,
+    "maImprovement": 20000,
+    "paImprovement": 20000,
+    "stImprovement": 40000,
+    "agImprovement": 80000
+}

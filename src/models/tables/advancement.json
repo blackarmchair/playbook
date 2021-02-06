@@ -1,0 +1,44 @@
+{
+    "experienced": {
+        "randomPrimary": 3,
+        "chosenPrimary": 6,
+        "randomSecondary": 6,
+        "chosenSecondary": 12,
+        "randomCharacteristic": 18
+    },
+    "veteran": {
+        "randomPrimary": 4,
+        "chosenPrimary": 8,
+        "randomSecondary": 8,
+        "chosenSecondary": 14,
+        "randomCharacteristic": 20
+    },
+    "emergingStar": {
+        "randomPrimary": 6,
+        "chosenPrimary": 12,
+        "randomSecondary": 12,
+        "chosenSecondary": 18,
+        "randomCharacteristic": 24
+    },
+    "star": {
+        "randomPrimary": 8,
+        "chosenPrimary": 16,
+        "randomSecondary": 16,
+        "chosenSecondary": 22,
+        "randomCharacteristic": 28
+    },
+    "superStar": {
+        "randomPrimary": 10,
+        "chosenPrimary": 20,
+        "randomSecondary": 20,
+        "chosenSecondary": 26,
+        "randomCharacteristic": 32
+    },
+    "legend": {
+        "randomPrimary": 15,
+        "chosenPrimary": 30,
+        "randomSecondary": 30,
+        "chosenSecondary": 40,
+        "randomCharacteristic": 50
+    }
+}

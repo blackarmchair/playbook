@@ -1,0 +1,186 @@
+{
+    "name": "Old World Alliance",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 70000
+    },
+    "tier": 1,
+    "apothecary": true,
+    "specialRules": ["Old World Classic"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Old World Human Linemen",
+            "cost": 50000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [],
+            "primary": ["G"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Old World Human Thrower",
+            "cost": 80000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 3 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [
+                "Animosity (Dwarves and Halflings)",
+                "Pass",
+                "Sure Hands"
+            ],
+            "primary": ["G", "P"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Old World Human Catcher",
+            "cost": 65000,
+            "MA": { "type": "number", "value": 8 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Animosity (Dwarves and Halflings)", "Catch", "Dodge"],
+            "primary": ["A", "G"],
+            "secondary": ["S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Old World Human Blitzer",
+            "cost": 90000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Animosity (Dwarves and Halflings)", "Block"],
+            "primary": ["G", "S"],
+            "secondary": ["A"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Old World Dwarf Blockers",
+            "cost": 75000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Arm Bar", "Brawler", "Loner (3+)", "Thick Skull"],
+            "primary": ["G", "S"],
+            "secondary": ["A"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Old World Dwarf Runner",
+            "cost": 85000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Loner (3+)", "Sure Hands", "Thick Skull"],
+            "primary": ["G", "P"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Old World Dwarf Blitzer",
+            "cost": 80000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Block", "Loner (3+)", "Thick Skull"],
+            "primary": ["G", "S"],
+            "secondary": ["A"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Old World Dwarf Troll Slayer",
+            "cost": 95000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [
+                "Block",
+                "Dauntless",
+                "Frenzy",
+                "Loner (3+)",
+                "Thick Skull"
+            ],
+            "primary": ["G", "S"],
+            "secondary": ["A"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Old World Halfling Hopeful",
+            "cost": 30000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 7 },
+            "skills": [
+                "Animosity (Dwarves and Humans)",
+                "Dodge",
+                "Right Stuff",
+                "Stunty"
+            ],
+            "primary": ["A"],
+            "secondary": ["G", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Ogre",
+            "cost": 140000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Bone Head",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Thick Skull",
+                "Throw Team-Mate"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Altern Forest Treemen",
+            "cost": 120000,
+            "MA": { "type": "number", "value": 2 },
+            "ST": { "type": "number", "value": 6 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 11 },
+            "skills": [
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Stand Firm",
+                "Strong Arm",
+                "Take Root",
+                "Thick Skull",
+                "Throw Team-Mate",
+                "Timmm-ber!"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "P"]
+        }
+    ]
+}

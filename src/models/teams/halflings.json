@@ -1,0 +1,73 @@
+{
+    "name": "Halfling",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 60000
+    },
+    "tier": 3,
+    "apothecary": true,
+    "specialRules": ["Halfling Thimble Cup", "Old World Classic"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 16 },
+            "position": "Halfling Hopeful Linemen",
+            "cost": 30000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 7 },
+            "skills": ["Dodge", "Right Stuff", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Halfling Heftys",
+            "cost": 50000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 3 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge", "Fend", "Stunty"],
+            "primary": ["A", "P"],
+            "secondary": ["G", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Halfling Catchers",
+            "cost": 55000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 7 },
+            "skills": ["Catch", "Dodge", "Right Stuff", "Sprint", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Altern Forest Treemen",
+            "cost": 120000,
+            "MA": { "type": "number", "value": 2 },
+            "ST": { "type": "number", "value": 6 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 11 },
+            "skills": [
+                "Mighty Blow (+1)",
+                "Stand Firm",
+                "Strong Arm",
+                "Take Root",
+                "Thick Skull",
+                "Throw Team-Mate",
+                "Timmm-ber!"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "P"]
+        }
+    ]
+}

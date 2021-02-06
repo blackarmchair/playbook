@@ -1,0 +1,62 @@
+{
+    "name": "Ogre",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 70000
+    },
+    "tier": 3,
+    "apothecary": true,
+    "specialRules": ["Old World Classic", "Badlands Brawl", "Low Cost Linemen"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 16 },
+            "position": "Gnoblar Linemen",
+            "cost": 15000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 1 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 6 },
+            "skills": ["Dodge", "Right Stuff", "Side Step", "Stunty", "Titchy"],
+            "primary": ["A"],
+            "secondary": ["G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Ogre Runt-Punter",
+            "cost": 145000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Bone Head",
+                "Kick Team-Mate",
+                "Mighty Blow (+1)",
+                "Thick Skull"
+            ],
+            "primary": ["P", "S"],
+            "secondary": ["A", "G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 5 },
+            "position": "Ogre Blockers",
+            "cost": 140000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Bone Head",
+                "Throw Team-Mate",
+                "Mighty Blow (+1)",
+                "Thick Skull"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "P"]
+        }
+    ]
+}

@@ -1,0 +1,99 @@
+{
+    "name": "Orc",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 60000
+    },
+    "tier": 2,
+    "apothecary": true,
+    "specialRules": ["Badlands Brawl"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 16 },
+            "position": "Orc Linemen",
+            "cost": 50000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Animosity (Orc Linemen)"],
+            "primary": ["G"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Throwers",
+            "cost": 60000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 3 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Animosity (Orc Linemen)", "Pass", "Sure Hands"],
+            "primary": ["G", "P"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 4 },
+            "position": "Blitzers",
+            "cost": 80000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Animosity (All)", "Block"],
+            "primary": ["G", "S"],
+            "secondary": ["A", "P"]
+        },
+        {
+            "quantity": { "min": 0, "max": 4 },
+            "position": "Big 'Un Blockers",
+            "cost": 90000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 4 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Animosity (Big 'Un Blockers)"],
+            "primary": ["G", "S"],
+            "secondary": ["A"]
+        },
+        {
+            "quantity": { "min": 0, "max": 4 },
+            "position": "Goblins",
+            "cost": 40000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge", "Right Stuff", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Untrained Troll",
+            "cost": 115000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Always Hungry",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Projectile Vomit",
+                "Really Stupid",
+                "Regeneration",
+                "Throw Team-Mate"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "P"]
+        }
+    ]
+}

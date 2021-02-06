@@ -1,0 +1,71 @@
+{
+    "name": "Lizardmen",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 70000
+    },
+    "tier": 1,
+    "apothecary": true,
+    "specialRules": ["Lizard Superleague"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Saurus Runner Lineman",
+            "cost": 60000,
+            "MA": { "type": "number", "value": 8 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Chameleon Skinks",
+            "cost": 70000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 3 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge", "On The Ball", "Shadowing", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 6 },
+            "position": "Saurus Blockers",
+            "cost": 85000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 4 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 6 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [],
+            "primary": ["G", "S"],
+            "secondary": ["A"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Kroxigor",
+            "cost": 140000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Bone Head",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Prehensile Tail",
+                "Thick Skull"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G"]
+        }
+    ]
+}

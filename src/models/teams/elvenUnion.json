@@ -1,0 +1,65 @@
+{
+    "name": "Elven Union",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 50000
+    },
+    "tier": 2,
+    "apothecary": true,
+    "specialRules": ["Elven Kingdoms League"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Linemen",
+            "cost": 60000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": [],
+            "primary": ["A", "G"],
+            "secondary": ["S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Throwers",
+            "cost": 75000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 2 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Pass"],
+            "primary": ["A", "G", "P"],
+            "secondary": ["S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 4 },
+            "position": "Catchers",
+            "cost": 100000,
+            "MA": { "type": "number", "value": 8 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Catch", "Nerves of Steel"],
+            "primary": ["A", "G"],
+            "secondary": ["S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Blitzers",
+            "cost": 115000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 3 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Block", "Side Step"],
+            "primary": ["A", "G"],
+            "secondary": ["P", "S"]
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "name": "Black Orc",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 60000
+    },
+    "tier": 2,
+    "apothecary": true,
+    "specialRules": ["Badlands Brawl", "Bribery and Corruption"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Goblin Bruiser Linemen",
+            "cost": 45000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge", "Right Stuff", "Stunty", "Thick Skull"],
+            "primary": ["A"],
+            "secondary": ["G", "P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 6 },
+            "position": "Black Orcs",
+            "cost": 90000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 4 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Brawler", "Grab"],
+            "primary": ["G", "S"],
+            "secondary": ["A", "P"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Trained Troll",
+            "cost": 115000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Always Hungry",
+                "Loner (3+)",
+                "Mighty Blow (+1)",
+                "Projectile Vomit",
+                "Really Stupid",
+                "Regeneration",
+                "Throw Team-Mate"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "P"]
+        }
+    ]
+}

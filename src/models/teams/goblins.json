@@ -1,0 +1,135 @@
+{
+    "name": "Goblin",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 60000
+    },
+    "tier": 3,
+    "apothecary": true,
+    "specialRules": [
+        "Badlands Brawl",
+        "Bribery and Corruption",
+        "Underworld Challenge"
+    ],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 16 },
+            "position": "Goblin Linemen",
+            "cost": 40000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge", "Right Stuff", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Bomma",
+            "cost": 45000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Bombadier", "Dodge", "Secret Weapon", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Looney",
+            "cost": 40000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Chainsaw", "Secret Weapon", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Fanatic",
+            "cost": 70000,
+            "MA": { "type": "number", "value": 3 },
+            "ST": { "type": "number", "value": 7 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Ball & Chain", "No Hands", "Secret Weapon", "Stunty"],
+            "primary": ["S"],
+            "secondary": ["A", "G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Pogoer",
+            "cost": 75000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge", "Pogo Stick", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "'Ooligan",
+            "cost": 65000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 6 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": [
+                "Dirty Player (+1)",
+                "Disturbing Presence",
+                "Dodge",
+                "Right Stuff",
+                "Stunty"
+            ],
+            "primary": ["A"],
+            "secondary": ["G", "P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Doom Diver",
+            "cost": 60000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 6 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Swoop", "Right Stuff", "Stunty"],
+            "primary": ["A"],
+            "secondary": ["G", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Trained Troll",
+            "cost": 115000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Always Hungry",
+                "Loner",
+                "Mighty Blow (+1)",
+                "Projectile Vomit",
+                "Really Stupid",
+                "Regeneration",
+                "Throw Team-Mate"
+            ],
+            "primary": ["A"],
+            "secondary": ["A", "G", "P"]
+        }
+    ]
+}

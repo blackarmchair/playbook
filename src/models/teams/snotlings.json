@@ -1,0 +1,123 @@
+{
+    "name": "Snotling",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 60000
+    },
+    "tier": 3,
+    "apothecary": true,
+    "specialRules": [
+        "Bribery & Corruption",
+        "Low Cost Linemen",
+        "Underworld Challenge"
+    ],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 16 },
+            "position": "Snotling Lineman",
+            "cost": 15000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 1 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 6 },
+            "skills": ["Dodge", "Right Stuff", "Side Step", "Stunty", "Titchy"],
+            "primary": ["A"],
+            "secondary": ["G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Fungus Flingers",
+            "cost": 30000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 1 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 6 },
+            "skills": [
+                "Bombadier",
+                "Dodge",
+                "Right Stuff",
+                "Side Step",
+                "Stunty",
+                "Secret Weapon"
+            ],
+            "primary": ["A", "P"],
+            "secondary": ["G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Fun-hoppas",
+            "cost": 20000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 1 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 6 },
+            "skills": [
+                "Dodge",
+                "Right Stuff",
+                "Side Step",
+                "Stunty",
+                "Pogo Stick"
+            ],
+            "primary": ["A"],
+            "secondary": ["G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Stilty Runnas",
+            "cost": 20000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 1 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 6 },
+            "skills": ["Dodge", "Right Stuff", "Side Step", "Stunty", "Sprint"],
+            "primary": ["S"],
+            "secondary": ["A", "G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Pump Wagons",
+            "cost": 105000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [
+                "Dirty Player (+1)",
+                "Juggernaut",
+                "Mighty Blow (+1)",
+                "Really Stupid",
+                "Secret Weapon",
+                "Stand Firm"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Trained Troll",
+            "cost": 115000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Always Hungry",
+                "Loner (3+)",
+                "Mighty Blow (+1)",
+                "Projectile Vomit",
+                "Really Stupid",
+                "Regeneration",
+                "Throw Team-Mate"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "P"]
+        }
+    ]
+}

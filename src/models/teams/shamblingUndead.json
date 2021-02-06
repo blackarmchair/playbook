@@ -1,0 +1,78 @@
+{
+    "name": "Shambling Undead",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 70000
+    },
+    "tier": 1,
+    "apothecary": false,
+    "specialRules": ["Masters of Undeath", "Sylvanian Spotlight"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Skeleton Lineman",
+            "cost": 40000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 6 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Regeneration", "Thick Skull"],
+            "primary": ["G"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Zombie Lineman",
+            "cost": 40000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Regeneration"],
+            "primary": ["G"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 4 },
+            "position": "Ghoul Runners",
+            "cost": 75000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge"],
+            "primary": ["A", "G"],
+            "secondary": ["P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Wight Blitzers",
+            "cost": 90000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Block", "Regeneration"],
+            "primary": ["G", "S"],
+            "secondary": ["A", "P"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Mummies",
+            "cost": 125000,
+            "MA": { "type": "number", "value": 3 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Mighty Blow (+1)", "Regeneration"],
+            "primary": ["S"],
+            "secondary": ["A", "G"]
+        }
+    ]
+}

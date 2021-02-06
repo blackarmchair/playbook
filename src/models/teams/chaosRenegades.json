@@ -1,0 +1,170 @@
+{
+    "name": "Chaos Renegade",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 70000
+    },
+    "tier": 2,
+    "apothecary": true,
+    "specialRules": ["Favored of..."],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Renegade Human Lineman",
+            "cost": 50000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [],
+            "primary": ["G", "M"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Remegade Human Thrower",
+            "cost": 75000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 3 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Animosity (All)", "Pass", "Safe Pair of Hands"],
+            "primary": ["G", "M", "P"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Renegade Goblin",
+            "cost": 40000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 2 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Animosity (All)", "Dodge", "Stunty", "Right Stuff"],
+            "primary": ["A", "M"],
+            "secondary": ["G", "P"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Renegade Orc",
+            "cost": 50000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": ["Animosity (All)"],
+            "primary": ["G", "M"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Renegade Skaven",
+            "cost": 50000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 3 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Animosity (All)"],
+            "primary": ["G", "M"],
+            "secondary": ["A", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Renegade Dark Elf",
+            "cost": 75000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 3 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Animosity (All)"],
+            "primary": ["A", "G", "M"],
+            "secondary": ["P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Renegade Troll",
+            "cost": 115000,
+            "MA": { "type": "number", "value": 4 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 5 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Always Hungry",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Projectile Vomit",
+                "Really Stupid",
+                "Regeneration",
+                "Throw Team-Mate"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "M"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Renegade Ogre",
+            "cost": 140000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 10 },
+            "skills": [
+                "Bone Head",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Thick Skull",
+                "Unchannelled Fury"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "M"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Renegade Minotaur",
+            "cost": 150000,
+            "MA": { "type": "number", "value": 5 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [
+                "Loner (4+)",
+                "Frenzy",
+                "Horns",
+                "Mighty Blow (+1)",
+                "Thick Skull",
+                "Unchannelled Fury"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "M"]
+        },
+        {
+            "quantity": { "min": 0, "max": 1 },
+            "position": "Renegade Rat Ogre",
+            "cost": 150000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 5 },
+            "AG": { "type": "threshold", "value": 4 },
+            "PA": { "type": "threshold", "value": 0 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [
+                "Animal Savagery",
+                "Frenzy",
+                "Loner (4+)",
+                "Mighty Blow (+1)",
+                "Prehensile Tail"
+            ],
+            "primary": ["S"],
+            "secondary": ["A", "G", "M"]
+        }
+    ]
+}

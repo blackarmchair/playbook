@@ -1,0 +1,78 @@
+{
+    "name": "Dark Elf",
+    "rerolls": {
+        "min": 0,
+        "max": 8,
+        "cost": 50000
+    },
+    "tier": 1,
+    "apothecary": true,
+    "specialRules": ["Elven Kingdoms League"],
+    "players": [
+        {
+            "quantity": { "min": 0, "max": 12 },
+            "position": "Dark Elf Lineman",
+            "cost": 70000,
+            "MA": { "type": "number", "value": 6 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": [],
+            "primary": ["A", "G"],
+            "secondary": ["S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Runners",
+            "cost": 80000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 3 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dump-off"],
+            "primary": ["A", "G", "P"],
+            "secondary": ["S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 4 },
+            "position": "Blitzers",
+            "cost": 100000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 4 },
+            "AV": { "type": "threshold", "value": 9 },
+            "skills": ["Block"],
+            "primary": ["A", "G"],
+            "secondary": ["P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Assassins",
+            "cost": 85000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Shadowing", "Stab"],
+            "primary": ["A", "G"],
+            "secondary": ["P", "S"]
+        },
+        {
+            "quantity": { "min": 0, "max": 2 },
+            "position": "Witch Elves",
+            "cost": 110000,
+            "MA": { "type": "number", "value": 7 },
+            "ST": { "type": "number", "value": 3 },
+            "AG": { "type": "threshold", "value": 2 },
+            "PA": { "type": "threshold", "value": 5 },
+            "AV": { "type": "threshold", "value": 8 },
+            "skills": ["Dodge", "Frenzy", "Jump Up"],
+            "primary": ["A", "G"],
+            "secondary": ["P", "S"]
+        }
+    ]
+}
