@@ -3,7 +3,7 @@ import { Container, makeStyles, Typography } from '@material-ui/core';
 import firebase from 'firebase/app';
 import { database } from '../../../services/firebase/index';
 import * as formatters from '../../../helpers/formatters';
-import Player from '../../components/roster/player';
+import Player from './Player';
 
 const useStyles = makeStyles((theme) => ({
 	container: {
