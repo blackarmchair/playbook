@@ -108,7 +108,7 @@ const Player = (props) => {
 					</Typography>
 					<Typography className={classes.secondaryHeading}>
 						MA: {props.player.MA} | ST: {props.player.ST} | AG:{' '}
-						{props.player.AG} | PA: {props.player.PA} | AV: {props.player.AV}
+						{props.player.AG}+ | PA: {props.player.PA}+ | AV: {props.player.AV}+
 					</Typography>
 					<Typography className={classes.secondaryHeading}>
 						{formatters.commaSpacing(props.player.skills)}

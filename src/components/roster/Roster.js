@@ -43,19 +43,13 @@ const Roster = (props) => {
 			}
 			return cur.value + acc;
 		}, 0);
-		const apothecary = props.roster.apothecary ? 50000 : 0;
-		const assistantCoaches = props.roster.assistantCoaches ? 10000 : 0;
-		const cheerleaders = props.roster.cheerleaders ? 10000 : 0;
-		const dedicatedFans = props.roster.dedicatedFans ? 10000 : 0;
-		const rerolls = (props.roster.rerolls * team.rerolls.cost) | 0;
+		const apothecary = props.roster.apothecary * 50000;
+		const assistantCoaches = props.roster.assistantCoaches * 10000;
+		const cheerleaders = props.roster.cheerleaders * 10000;
+		const rerolls = props.roster.rerolls * team.rerolls.cost || 0;
 
 		return formatters.parseNumber(
-			playerValue +
-				apothecary +
-				assistantCoaches +
-				cheerleaders +
-				dedicatedFans +
-				rerolls
+			playerValue + apothecary + assistantCoaches + cheerleaders + rerolls
 		);
 	};
 
