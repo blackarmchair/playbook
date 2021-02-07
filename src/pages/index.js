@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
 const Index = () => {
 	const classes = useStyles();
 
-	const [open, setOpen] = React.useState(true);
+	const [open, setOpen] = React.useState(window.innerWidth > 1024);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);

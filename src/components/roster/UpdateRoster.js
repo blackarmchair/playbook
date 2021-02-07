@@ -7,10 +7,12 @@ import {
 	Button,
 	makeStyles,
 	Typography,
+	TextField,
 } from '@material-ui/core';
 import Player from './Player';
 import { database } from '../../../services/firebase/index';
 import * as formatters from '../../../helpers/formatters';
+import AddPlayer from './modals/AddPlayer';
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -152,19 +154,99 @@ const InitializeRoster = (props) => {
 		);
 	};
 
+	const updateDedicatedFans = (increase) => {
+		database
+			.collection('rosters')
+			.doc(props.roster.id)
+			.update({
+				...props.roster,
+				dedicatedFans: increase
+					? props.roster.dedicatedFans + 1
+					: props.roster.dedicatedFans - 1,
+			})
+			.then(() => {
+				props.updateRosterData();
+			})
+			.catch((ex) => {
+				alert(ex.message);
+			});
+	};
+
+	const [treasury, setTreasury] = React.useState(props.roster.treasury);
+	const updateTreasury = () => {
+		database
+			.collection('rosters')
+			.doc(props.roster.id)
+			.update({ ...props.roster, treasury })
+			.then(() => {
+				props.updateRosterData();
+			})
+			.catch((ex) => {
+				alert(ex.message);
+			});
+	};
+
+	const addLeaguePoints = (points, outcome) => {
+		database
+			.collection('rosters')
+			.doc(props.roster.id)
+			.update({
+				...props.roster,
+				leaguePoints: props.roster.leaguePoints + points,
+				record: {
+					win:
+						outcome === 'win'
+							? props.roster.record.win + 1
+							: props.roster.record.win,
+					loss:
+						outcome === 'loss'
+							? props.roster.record.loss + 1
+							: props.roster.record.loss,
+					draw:
+						outcome === 'draw'
+							? props.roster.record.draw + 1
+							: props.roster.record.draw,
+				},
+			})
+			.then(() => {
+				props.updateRosterData();
+			})
+			.catch((ex) => {
+				alert(ex.message);
+			});
+	};
+
+	const [addPlayerModal, setAddPlayerModal] = React.useState(false);
+
 	return (
 		<Container className={classes.container}>
+			<AddPlayer
+				roster={props.roster}
+				team={props.team}
+				open={addPlayerModal}
+				handleClose={() => setAddPlayerModal(false)}
+			/>
 			<Grid container spacing={3}>
 				<Grid item xs={12} md={12} lg={12}>
-					{props.roster.players.map((player, index) => (
-						<Player
-							key={player.id}
-							player={player}
-							roster={props.roster}
-							updateRosterData={props.updateRosterData}
-							index={index}
-						/>
-					))}
+					{props.roster.players
+						.sort((a, b) => {
+							if (a.position.toLowerCase() < b.position.toLowerCase()) {
+								return -1;
+							}
+							if (a.position.toLowerCase() > b.position.toLowerCase()) {
+								return 1;
+							}
+							return 0;
+						})
+						.map((player, index) => (
+							<Player
+								key={player.id}
+								player={player}
+								roster={props.roster}
+								updateRosterData={props.updateRosterData}
+								index={index}
+							/>
+						))}
 					<Typography className={classes.container}>
 						Team Value: {teamValuation()}
 					</Typography>
@@ -241,8 +323,107 @@ const InitializeRoster = (props) => {
 					<Card>
 						<CardContent>
 							<Typography>
-								Dedicated Fans: {props.roster.dedicatedFans}
+								Dedicated Fans: {props.roster.dedicatedFans + 1}
 							</Typography>
+							<Button
+								fullWidth
+								variant="contained"
+								color="primary"
+								className={classes.container}
+								onClick={() => updateDedicatedFans(true)}
+							>
+								Increase Dedicated Fans
+							</Button>
+							<Button
+								fullWidth
+								variant="contained"
+								color="primary"
+								className={classes.container}
+								onClick={() => updateDedicatedFans(false)}
+							>
+								Decrease Dedicated Fans
+							</Button>
+						</CardContent>
+					</Card>
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Card>
+						<CardContent>
+							<Typography>Treasury:</Typography>
+							<TextField
+								variant="outlined"
+								margin="normal"
+								required
+								fullWidth
+								id="treasury"
+								label=""
+								name="treasury"
+								autoFocus
+								type="number"
+								value={treasury}
+								onChange={(e) => setTreasury(e.target.value)}
+							/>
+							<Button
+								fullWidth
+								variant="contained"
+								color="primary"
+								className={classes.container}
+								onClick={() => updateTreasury()}
+							>
+								Update Treasury
+							</Button>
+						</CardContent>
+					</Card>
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Card>
+						<CardContent>
+							<Typography>
+								League Points: {props.roster.leaguePoints || 0}
+							</Typography>
+							<Button
+								fullWidth
+								variant="contained"
+								color="primary"
+								className={classes.container}
+								onClick={() => addLeaguePoints(3, 'win')}
+							>
+								Win
+							</Button>
+							<Button
+								fullWidth
+								variant="contained"
+								color="primary"
+								className={classes.container}
+								onClick={() => addLeaguePoints(0, 'loss')}
+							>
+								Loss
+							</Button>
+							<Button
+								fullWidth
+								variant="contained"
+								color="primary"
+								className={classes.container}
+								onClick={() => addLeaguePoints(1, 'draw')}
+							>
+								Draw
+							</Button>
+						</CardContent>
+					</Card>
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Card>
+						<CardContent>
+							<Typography>Build Your Roster</Typography>
+							<Button
+								fullWidth
+								variant="contained"
+								color="primary"
+								className={classes.container}
+								onClick={() => setAddPlayerModal(true)}
+							>
+								Hire A New Player
+							</Button>
 						</CardContent>
 					</Card>
 				</Grid>

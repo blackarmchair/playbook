@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, makeStyles, Typography } from '@material-ui/core';
+import { Container, makeStyles, Typography, Grid } from '@material-ui/core';
 import firebase from 'firebase/app';
 import { database } from '../../../services/firebase/index';
 import * as formatters from '../../../helpers/formatters';
@@ -55,26 +55,72 @@ const Roster = (props) => {
 
 	return (
 		<Container className={classes.container}>
-			<Typography variant="h5" className={classes.container}>
-				{props.roster.name} | {owner.fname} {owner.lname}
-			</Typography>
-			{props.roster.players.map((player, index) => (
-				<Player
-					key={player.id}
-					player={player}
-					roster={props.roster}
-					updateRosterData={() => {
-						console.log('foo');
-					}}
-					index={index}
-					readOnly={true}
-				/>
-			))}
-			{team.hasOwnProperty('name') && (
-				<Typography className={classes.container}>
-					Team Value: {teamValuation()}
-				</Typography>
-			)}
+			{props.roster.players
+				.sort((a, b) => {
+					if (a.position.toLowerCase() < b.position.toLowerCase()) {
+						return -1;
+					}
+					if (a.position.toLowerCase() > b.position.toLowerCase()) {
+						return 1;
+					}
+					return 0;
+				})
+				.map((player, index) => (
+					<Player
+						key={player.id}
+						player={player}
+						roster={props.roster}
+						updateRosterData={() => {
+							console.log('foo');
+						}}
+						index={index}
+						readOnly={true}
+					/>
+				))}
+			<Grid container spacing={3}>
+				<Grid item xs={12} md={4} lg={3}>
+					{team.hasOwnProperty('name') && (
+						<Typography className={classes.container}>
+							Team Value: {teamValuation()}
+						</Typography>
+					)}
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Typography className={classes.container}>
+						Rerolls: {props.roster.rerolls}
+					</Typography>
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Typography className={classes.container}>
+						Dedicated Fans: {props.roster.dedicatedFans}
+					</Typography>
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Typography className={classes.container}>
+						Apothecary: {props.roster.apothecary}
+					</Typography>
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Typography className={classes.container}>
+						Assistant Coaches: {props.roster.assistantCoaches}
+					</Typography>
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Typography className={classes.container}>
+						Cheerleaders: {props.roster.cheerleaders}
+					</Typography>
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Typography className={classes.container}>
+						League Points: {props.roster.leaguePoints}
+					</Typography>
+				</Grid>
+				<Grid item xs={12} md={4} lg={3}>
+					<Typography className={classes.container}>
+						Treasury: {formatters.parseNumber(props.roster.treasury)}g
+					</Typography>
+				</Grid>
+			</Grid>
 		</Container>
 	);
 };

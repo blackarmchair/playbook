@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
 	list: {
 		width: '100%',
 	},
+	accSummary: {
+		flexDirection: window.innerWidth > 1024 ? 'row' : 'column',
+	},
 }));
 
 const Player = (props) => {
@@ -101,6 +104,9 @@ const Player = (props) => {
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls={`${props.player.id}_content`}
 					id={`${props.player.id}_content`}
+					classes={{
+						content: classes.accSummary,
+					}}
 				>
 					<Typography className={classes.heading}>
 						#{props.player.jerseyNumber}: {props.player.name || '[No Name]'} (

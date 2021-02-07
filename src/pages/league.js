@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import firebase from 'firebase/app';
 import {
 	makeStyles,
 	CssBaseline,
@@ -14,9 +13,13 @@ import {
 	Grid,
 	Paper,
 	List,
+	Accordion,
+	AccordionDetails,
+	AccordionSummary,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Navbar from '../components/common/Navbar';
 import withAuth from '../../helpers/withAuth';
 import { database } from '../../services/firebase/index';
@@ -101,11 +104,25 @@ const useStyles = makeStyles((theme) => ({
 	fixedHeight: {
 		height: 240,
 	},
+	heading: {
+		fontSize: theme.typography.pxToRem(15),
+		flexBasis: '33.33%',
+		flexShrink: 0,
+	},
+	secondaryHeading: {
+		fontSize: theme.typography.pxToRem(15),
+		color: theme.palette.text.secondary,
+		flexBasis: '33.33%',
+		flexShrink: 0,
+	},
+	accSummary: {
+		flexDirection: window.innerWidth > 1024 ? 'row' : 'column',
+	},
 }));
 
 const League = () => {
 	const classes = useStyles();
-	const [open, setOpen] = React.useState(true);
+	const [open, setOpen] = React.useState(window.innerWidth > 1024);
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
@@ -120,6 +137,17 @@ const League = () => {
 			const data = snapshot.docs.map((doc) => ({
 				...doc.data(),
 				id: doc.id,
+			}));
+			fetchOwner(data);
+		}
+		async function fetchOwner(rosters) {
+			const snapshot = await database.collection('users').get();
+			const data = snapshot.docs.map((doc) => ({
+				userData: {
+					...doc.data(),
+					id: doc.id,
+				},
+				...rosters.find((roster) => roster.owner === doc.id),
 			}));
 			setRosters(data);
 		}
@@ -178,9 +206,40 @@ const League = () => {
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
 							<Paper className={classes.paper}>
-								{rosters.map((roster) => (
-									<Roster roster={roster} />
-								))}
+								{rosters
+									.sort((a, b) => {
+										if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
+										if (a.name.toUpperCase() < b.name.toUpperCase()) return -1;
+										return 0;
+									})
+									.map((roster) => (
+										<Accordion key={roster.id}>
+											<AccordionSummary
+												expandIcon={<ExpandMoreIcon />}
+												aria-controls={`${roster.id}_content`}
+												id={`${roster.id}_content`}
+												classes={{
+													content: classes.accSummary,
+												}}
+											>
+												<Typography className={classes.heading}>
+													{roster.name}
+												</Typography>
+												<Typography className={classes.secondaryHeading}>
+													{roster.userData.fname} {roster.userData.lname}
+												</Typography>
+												{window.innerWidth > 1024 && (
+													<Typography className={classes.secondaryHeading}>
+														({roster.record.win}/{roster.record.loss}/
+														{roster.record.draw})
+													</Typography>
+												)}
+											</AccordionSummary>
+											<AccordionDetails>
+												<Roster roster={roster} />
+											</AccordionDetails>
+										</Accordion>
+									))}
 							</Paper>
 						</Grid>
 					</Grid>

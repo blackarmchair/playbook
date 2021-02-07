@@ -182,7 +182,7 @@ const Roster = () => {
 	};
 
 	// Manage Sidebar
-	const [open, setOpen] = React.useState(true);
+	const [open, setOpen] = React.useState(window.innerWidth > 1024);
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
@@ -212,6 +212,13 @@ const Roster = () => {
 						level: 0,
 						roster: roster.id,
 						value: playerData.cost,
+						stats: {
+							cas: 0,
+							comp: 0,
+							int: 0,
+							mvp: 0,
+							td: 0,
+						},
 					});
 				});
 			});
@@ -303,14 +310,11 @@ const Roster = () => {
 									team.hasOwnProperty('players') ? (
 										<>
 											<Typography variant="h5">
-												Team Name: {roster.name} | &nbsp;
-												{roster.initiated
-													? `Treasury: ${formatters.parseNumber(
-															roster.treasury
-													  )}g`
-													: `Current Value: ${formatters.parseNumber(
-															cost.reduce((acc, cur) => acc + cur.cost, 0)
-													  )}g`}{' '}
+												{roster.name}
+												{!roster.initiated &&
+													`Current Value: ${formatters.parseNumber(
+														cost.reduce((acc, cur) => acc + cur.cost, 0)
+													)}g`}
 											</Typography>
 											{!roster.players.length ? (
 												<InitializeRoster

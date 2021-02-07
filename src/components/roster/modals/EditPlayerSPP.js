@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'react-final-form';
 import { TextField } from 'mui-rff';
-import { Modal, Button, makeStyles } from '@material-ui/core';
+import { Modal, Button, makeStyles, ButtonGroup } from '@material-ui/core';
 import { database } from '../../../../services/firebase';
 
 const useStyles = makeStyles((theme) => ({
@@ -33,8 +33,7 @@ const EditPlayerSPP = (props) => {
 	const classes = useStyles();
 	const [modalStyle] = React.useState(getModalStyle);
 
-	const handleUpdate = (formData) => {
-		const { SPP } = formData;
+	const handleUpdate = (points, source) => {
 		database
 			.collection('rosters')
 			.doc(props.roster.id)
@@ -42,7 +41,32 @@ const EditPlayerSPP = (props) => {
 				...props.roster,
 				players: [
 					...props.roster.players.filter((p) => p.id !== props.player.id),
-					{ ...props.player, SPP },
+					{
+						...props.player,
+						SPP: parseInt(props.player.SPP) + parseInt(points),
+						stats: {
+							comp:
+								source === 'comp' && props.player.stats
+									? props.player.stats.comp + 1
+									: 0,
+							int:
+								source === 'int' && props.player.stats
+									? props.player.stats.int + 1
+									: 0,
+							cas:
+								source === 'cas' && props.player.stats
+									? props.player.stats.cas + 1
+									: 0,
+							td:
+								source === 'td' && props.player.stats
+									? props.player.stats.td + 1
+									: 0,
+							mvp:
+								source === 'mvp' && props.player.stats
+									? props.player.stats.mvp + 1
+									: 0,
+						},
+					},
 				],
 			});
 		props.handleClose();
@@ -50,33 +74,69 @@ const EditPlayerSPP = (props) => {
 
 	const modalBody = (
 		<div style={modalStyle} className={classes.paper}>
-			<Form
-				onSubmit={handleUpdate}
-				render={({ handleSubmit }) => (
-					<form onSubmit={handleSubmit} name="editPlayerSPP">
-						<TextField
-							variant="outlined"
-							margin="normal"
-							required
-							fullWidth
-							id="SPP"
-							label="Star Player Points"
-							name="SPP"
-							autoFocus
-							type="number"
-						/>
-						<Button
-							type="submit"
-							fullWidth
-							variant="contained"
-							color="primary"
-							className={classes.submit}
-						>
-							Update Player
-						</Button>
-					</form>
-				)}
-			/>
+			<Button
+				fullWidth
+				variant="contained"
+				color="primary"
+				className={classes.submit}
+				onClick={() => handleUpdate(1, 'comp')}
+			>
+				Passing Completion
+			</Button>
+			<Button
+				fullWidth
+				variant="contained"
+				color="primary"
+				className={classes.submit}
+				onClick={() => handleUpdate(1, 'comp')}
+			>
+				Throwing Completion
+			</Button>
+			<Button
+				fullWidth
+				variant="contained"
+				color="primary"
+				className={classes.submit}
+				onClick={() => handleUpdate(1, 'int')}
+			>
+				Deflection
+			</Button>
+			<Button
+				fullWidth
+				variant="contained"
+				color="primary"
+				className={classes.submit}
+				onClick={() => handleUpdate(2, 'int')}
+			>
+				Interception
+			</Button>
+			<Button
+				fullWidth
+				variant="contained"
+				color="primary"
+				className={classes.submit}
+				onClick={() => handleUpdate(2, 'cas')}
+			>
+				Casualty
+			</Button>
+			<Button
+				fullWidth
+				variant="contained"
+				color="primary"
+				className={classes.submit}
+				onClick={() => handleUpdate(3, 'td')}
+			>
+				Touchdown
+			</Button>
+			<Button
+				fullWidth
+				variant="contained"
+				color="primary"
+				className={classes.submit}
+				onClick={() => handleUpdate(4, 'mvp')}
+			>
+				Most Valuable Player (MVP)
+			</Button>
 		</div>
 	);
 
