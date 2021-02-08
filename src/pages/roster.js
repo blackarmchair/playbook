@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import firebase from 'firebase/app';
 import { database } from '../../services/firebase/index';
 import local from '../../helpers/local';
@@ -255,6 +256,10 @@ const Roster = () => {
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
+			<Head>
+				<title>Playbook - Roster</title>
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+			</Head>
 			<AppBar
 				position="absolute"
 				className={clsx(classes.appBar, open && classes.appBarShift)}

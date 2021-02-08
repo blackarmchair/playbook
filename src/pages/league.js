@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import clsx from 'clsx';
 import {
 	makeStyles,
@@ -156,6 +157,10 @@ const League = () => {
 
 	return (
 		<div className={classes.root}>
+			<Head>
+				<title>Playbook - League</title>
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+			</Head>
 			<CssBaseline />
 			<AppBar
 				position="absolute"
