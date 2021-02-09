@@ -1,30 +1,23 @@
 import React from 'react';
 import Head from 'next/head';
-import clsx from 'clsx';
 import {
 	makeStyles,
 	CssBaseline,
-	Drawer,
 	AppBar,
-	Toolbar,
 	Typography,
-	Divider,
-	IconButton,
 	Container,
 	Grid,
 	Paper,
-	List,
 	Accordion,
 	AccordionDetails,
 	AccordionSummary,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Navbar from '../components/common/Navbar';
 import withAuth from '../../helpers/withAuth';
 import { database } from '../../services/firebase/index';
 import Roster from '../components/roster/Roster';
+import TopBar from '../components/common/TopBar';
+import SideDrawer from '../components/common/SideDrawer';
 
 const drawerWidth = 240;
 
@@ -119,6 +112,9 @@ const useStyles = makeStyles((theme) => ({
 	accSummary: {
 		flexDirection: window.innerWidth > 1024 ? 'row' : 'column',
 	},
+	spacing: {
+		padding: theme.spacing(2),
+	},
 }));
 
 const League = () => {
@@ -162,55 +158,17 @@ const League = () => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<CssBaseline />
-			<AppBar
-				position="absolute"
-				className={clsx(classes.appBar, open && classes.appBarShift)}
-			>
-				<Toolbar className={classes.toolbar}>
-					<IconButton
-						edge="start"
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						className={clsx(
-							classes.menuButton,
-							open && classes.menuButtonHidden
-						)}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography
-						component="h1"
-						variant="h6"
-						color="inherit"
-						noWrap
-						className={classes.title}
-					>
-						Playbook
-					</Typography>
-				</Toolbar>
-			</AppBar>
-			<Drawer
-				variant="permanent"
-				classes={{
-					paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-				}}
-				open={open}
-			>
-				<div className={classes.toolbarIcon}>
-					<IconButton onClick={handleDrawerClose}>
-						<ChevronLeftIcon />
-					</IconButton>
-				</div>
-				<Divider />
-				<List>{Navbar}</List>
-			</Drawer>
+			<TopBar handleDrawerOpen={handleDrawerOpen} />
+			<SideDrawer open={open} handleDrawerClose={handleDrawerClose} />
 			<main className={classes.content}>
 				<div className={classes.appBarSpacer} />
 				<Container maxWidth="lg" className={classes.container}>
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
 							<Paper className={classes.paper}>
+								<Typography variant="h5" className={classes.spacing}>
+									Battle Brothers Blood Bowl League Teams
+								</Typography>
 								{rosters
 									.sort((a, b) => {
 										if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;

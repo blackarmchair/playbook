@@ -8,25 +8,18 @@ import clsx from 'clsx';
 import {
 	makeStyles,
 	CssBaseline,
-	Drawer,
-	AppBar,
-	Toolbar,
 	Typography,
-	Divider,
-	IconButton,
 	Container,
 	Grid,
 	Paper,
-	List,
 	CircularProgress,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Navbar from '../components/common/Navbar';
 import withAuth from '../../helpers/withAuth';
 import CreateRoster from '../components/roster/CreateRoster';
 import InitializeRoster from '../components/roster/InitializeRoster';
 import UpdateRoster from '../components/roster/UpdateRoster';
+import TopBar from '../components/common/TopBar';
+import SideDrawer from '../components/common/SideDrawer';
 
 const drawerWidth = 240;
 
@@ -260,49 +253,9 @@ const Roster = () => {
 				<title>Playbook - Roster</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
-			<AppBar
-				position="absolute"
-				className={clsx(classes.appBar, open && classes.appBarShift)}
-			>
-				<Toolbar className={classes.toolbar}>
-					<IconButton
-						edge="start"
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						className={clsx(
-							classes.menuButton,
-							open && classes.menuButtonHidden
-						)}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography
-						component="h1"
-						variant="h6"
-						color="inherit"
-						noWrap
-						className={classes.title}
-					>
-						Playbook
-					</Typography>
-				</Toolbar>
-			</AppBar>
-			<Drawer
-				variant="permanent"
-				classes={{
-					paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-				}}
-				open={open}
-			>
-				<div className={classes.toolbarIcon}>
-					<IconButton onClick={handleDrawerClose}>
-						<ChevronLeftIcon />
-					</IconButton>
-				</div>
-				<Divider />
-				<List>{Navbar}</List>
-			</Drawer>
+			<CssBaseline />
+			<TopBar handleDrawerOpen={handleDrawerOpen} />
+			<SideDrawer open={open} handleDrawerClose={handleDrawerClose} />
 			<main className={classes.content}>
 				<div className={classes.appBarSpacer} />
 				<Container maxWidth="lg" className={classes.container}>

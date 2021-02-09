@@ -4,13 +4,7 @@ import clsx from 'clsx';
 import {
 	makeStyles,
 	CssBaseline,
-	Drawer,
-	AppBar,
-	Toolbar,
-	List,
 	Typography,
-	Divider,
-	IconButton,
 	Container,
 	Grid,
 	Paper,
@@ -21,12 +15,9 @@ import {
 	TableHead,
 	TableRow,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Navbar from '../components/common/Navbar';
 import withAuth from '../../helpers/withAuth';
-
-const drawerWidth = 240;
+import TopBar from '../components/common/TopBar';
+import SideDrawer from '../components/common/SideDrawer';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -49,14 +40,6 @@ const useStyles = makeStyles((theme) => ({
 			duration: theme.transitions.duration.leavingScreen,
 		}),
 	},
-	appBarShift: {
-		marginLeft: drawerWidth,
-		width: `calc(100% - ${drawerWidth}px)`,
-		transition: theme.transitions.create(['width', 'margin'], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-	},
 	menuButton: {
 		marginRight: 36,
 	},
@@ -65,15 +48,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 	title: {
 		flexGrow: 1,
-	},
-	drawerPaper: {
-		position: 'relative',
-		whiteSpace: 'nowrap',
-		width: drawerWidth,
-		transition: theme.transitions.create('width', {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
 	},
 	drawerPaperClose: {
 		overflowX: 'hidden',
@@ -127,8 +101,6 @@ const Index = () => {
 		setOpen(false);
 	};
 
-	const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
 	return (
 		<div className={classes.root}>
 			<Head>
@@ -136,49 +108,8 @@ const Index = () => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<CssBaseline />
-			<AppBar
-				position="absolute"
-				className={clsx(classes.appBar, open && classes.appBarShift)}
-			>
-				<Toolbar className={classes.toolbar}>
-					<IconButton
-						edge="start"
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						className={clsx(
-							classes.menuButton,
-							open && classes.menuButtonHidden
-						)}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography
-						component="h1"
-						variant="h6"
-						color="inherit"
-						noWrap
-						className={classes.title}
-					>
-						Playbook
-					</Typography>
-				</Toolbar>
-			</AppBar>
-			<Drawer
-				variant="permanent"
-				classes={{
-					paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-				}}
-				open={open}
-			>
-				<div className={classes.toolbarIcon}>
-					<IconButton onClick={handleDrawerClose}>
-						<ChevronLeftIcon />
-					</IconButton>
-				</div>
-				<Divider />
-				<List>{Navbar}</List>
-			</Drawer>
+			<TopBar open={open} handleDrawerOpen={handleDrawerOpen} />
+			<SideDrawer open={open} handleDrawerClose={handleDrawerClose} />
 			<main className={classes.content}>
 				<div className={classes.appBarSpacer} />
 				<Container maxWidth="lg" className={classes.container}>
