@@ -16,6 +16,7 @@ import {
 	TableRow,
 } from '@material-ui/core';
 import withAuth from '../../helpers/withAuth';
+import { database } from '../../services/firebase/index';
 import TopBar from '../components/common/TopBar';
 import SideDrawer from '../components/common/SideDrawer';
 
@@ -100,6 +101,30 @@ const Index = () => {
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
+
+	const [rosters, setRosters] = React.useState([]);
+	React.useEffect(() => {
+		async function fetchRosters() {
+			const snapshot = await database.collection('rosters').get();
+			const data = snapshot.docs.map((doc) => ({
+				...doc.data(),
+				id: doc.id,
+			}));
+			fetchOwner(data);
+		}
+		async function fetchOwner(rosters) {
+			const snapshot = await database.collection('users').get();
+			const data = snapshot.docs.map((doc) => ({
+				userData: {
+					...doc.data(),
+					id: doc.id,
+				},
+				...rosters.find((roster) => roster.owner === doc.id),
+			}));
+			setRosters(data);
+		}
+		fetchRosters();
+	}, []);
 
 	return (
 		<div className={classes.root}>
@@ -332,6 +357,49 @@ const Index = () => {
 												<TableCell>Alex A</TableCell>
 												<TableCell>TBD</TableCell>
 											</TableRow>
+										</TableBody>
+									</Table>
+								</TableContainer>
+							</Paper>
+						</Grid>
+						<Grid item xs={12}>
+							<Paper className={classes.padded}>
+								<Typography variant="h5" className={classes.container}>
+									League Standings
+								</Typography>
+								<TableContainer>
+									<Table>
+										<TableHead>
+											<TableRow>
+												<TableCell>Place</TableCell>
+												<TableCell>Coach</TableCell>
+												<TableCell>Team</TableCell>
+												<TableCell>League Points</TableCell>
+											</TableRow>
+										</TableHead>
+										<TableBody>
+											{rosters
+												.sort((a, b) => {
+													if (
+														parseInt(a.leaguePoints) > parseInt(b.leaguePoints)
+													)
+														return -1;
+													if (
+														parseInt(a.leaguePoints) < parseInt(b.leaguePoints)
+													)
+														return 1;
+													return 0;
+												})
+												.map((roster, ind) => (
+													<TableRow>
+														<TableCell>{ind + 1}</TableCell>
+														<TableCell>
+															{roster.userData.fname} {roster.userData.lname}
+														</TableCell>
+														<TableCell>{roster.name}</TableCell>
+														<TableCell>{roster.leaguePoints}</TableCell>
+													</TableRow>
+												))}
 										</TableBody>
 									</Table>
 								</TableContainer>

@@ -117,7 +117,7 @@ const Roster = (props) => {
 				</Grid>
 				<Grid item xs={12} md={4} lg={3}>
 					<Typography className={classes.container}>
-						Treasury: {formatters.parseNumber(props.roster.treasury)}g
+						Treasury: {formatters.parseNumber(parseInt(props.roster.treasury))}g
 					</Typography>
 				</Grid>
 			</Grid>
