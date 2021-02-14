@@ -8,6 +8,7 @@ const theme = createMuiTheme({
 		common: { black: '#000', white: '#fff' },
 		background: {
 			paper: 'rgba(255, 255, 255, 1)',
+			paperTransparent: 'rgba(255, 255, 255, 0.66)',
 			default: 'rgba(245, 241, 238, 1)',
 		},
 		primary: {

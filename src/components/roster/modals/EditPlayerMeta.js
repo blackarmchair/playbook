@@ -48,10 +48,16 @@ const EditPlayerMeta = (props) => {
 		props.handleClose();
 	};
 
+	const initialData = {
+		name: props.player.name || '',
+		jerseyNumber: props.player.jerseyNumber || '00',
+	};
+
 	const modalBody = (
 		<div style={modalStyle} className={classes.paper}>
 			<Form
 				onSubmit={handleUpdate}
+				initialValues={initialData}
 				render={({ handleSubmit }) => (
 					<form onSubmit={handleSubmit} name="editPlayerMeta">
 						<TextField

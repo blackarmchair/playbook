@@ -9,10 +9,11 @@ import {
 	Typography,
 	TextField,
 } from '@material-ui/core';
-import Player from './Player';
 import { database } from '../../../services/firebase/index';
 import * as formatters from '../../../helpers/formatters';
 import AddPlayer from './modals/AddPlayer';
+import PlayerDetailsDrawer from './PlayerDetailsDrawer';
+import PlayerTable from '../common/PlayerTable';
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -24,119 +25,123 @@ const InitializeRoster = (props) => {
 	const classes = useStyles();
 
 	const buildRoster = (type) => {
-		switch (type) {
-			case 'apothecary':
-				if (!props.roster.apothecary && props.roster.treasury >= 50000) {
-					database
-						.collection('rosters')
-						.doc(props.roster.id)
-						.update({
-							...props.roster,
-							apothecary: 1,
-							treasury: props.roster.treasury - 50000,
-						})
-						.then(() => {
-							props.updateRosterData();
-						})
-						.catch((ex) => {
-							alert(ex.message);
-						});
-				} else {
-					if (props.roster.apothecary > 0) {
-						alert('You cannot hire more than (1) Apothecary.');
+		const confirm = window.confirm(`Add (1) ${type} to your team?`);
+		if (confirm) {
+			switch (type) {
+				case 'apothecary':
+					if (!props.roster.apothecary && props.roster.treasury >= 50000) {
+						database
+							.collection('rosters')
+							.doc(props.roster.id)
+							.update({
+								...props.roster,
+								apothecary: 1,
+								treasury: props.roster.treasury - 50000,
+							})
+							.then(() => {
+								props.updateRosterData();
+							})
+							.catch((ex) => {
+								alert(ex.message);
+							});
+					} else {
+						if (props.roster.apothecary > 0) {
+							alert('You cannot hire more than (1) Apothecary.');
+						}
+						if (props.roster.treasury < 50000) {
+							alert("You don't have enough gold.");
+						}
 					}
-					if (props.roster.treasury < 50000) {
-						alert("You don't have enough gold.");
+					break;
+				case 'assistantCoaches':
+					if (
+						props.roster.assistantCoaches < 6 &&
+						props.roster.treasury >= 10000
+					) {
+						database
+							.collection('rosters')
+							.doc(props.roster.id)
+							.update({
+								...props.roster,
+								assistantCoaches: props.roster.assistantCoaches + 1,
+								treasury: props.roster.treasury - 10000,
+							})
+							.then(() => {
+								props.updateRosterData();
+							})
+							.catch((ex) => {
+								alert(ex.message);
+							});
+					} else {
+						if (props.roster.assistantCoaches > 5) {
+							alert('You cannot hire more than (6) Assistant Coaches.');
+						}
+						if (props.roster.treasury < 10000) {
+							alert("You don't have enough gold.");
+						}
 					}
-				}
-				break;
-			case 'assistantCoaches':
-				if (
-					props.roster.assistantCoaches < 6 &&
-					props.roster.treasury >= 10000
-				) {
-					database
-						.collection('rosters')
-						.doc(props.roster.id)
-						.update({
-							...props.roster,
-							assistantCoaches: props.roster.assistantCoaches + 1,
-							treasury: props.roster.treasury - 10000,
-						})
-						.then(() => {
-							props.updateRosterData();
-						})
-						.catch((ex) => {
-							alert(ex.message);
-						});
-				} else {
-					if (props.roster.assistantCoaches > 5) {
-						alert('You cannot hire more than (6) Assistant Coaches.');
+					break;
+				case 'cheerleaders':
+					if (props.roster.cheerleaders < 6 && props.roster.treasury >= 10000) {
+						database
+							.collection('rosters')
+							.doc(props.roster.id)
+							.update({
+								...props.roster,
+								cheerleaders: props.roster.cheerleaders + 1,
+								treasury: props.roster.treasury - 10000,
+							})
+							.then(() => {
+								props.updateRosterData();
+							})
+							.catch((ex) => {
+								alert(ex.message);
+							});
+					} else {
+						if (props.roster.cheerleaders > 5) {
+							alert('You cannot hire more than (6) Cheerleaders.');
+						}
+						if (props.roster.treasury < 10000) {
+							alert("You don't have enough gold.");
+						}
 					}
-					if (props.roster.treasury < 10000) {
-						alert("You don't have enough gold.");
+					break;
+				case 'rerolls':
+					if (
+						props.roster.rerolls < 8 &&
+						props.roster.treasury >= props.team.rerolls.cost * 2
+					) {
+						database
+							.collection('rosters')
+							.doc(props.roster.id)
+							.update({
+								...props.roster,
+								rerolls: props.roster.rerolls + 1,
+								treasury: props.roster.treasury - props.team.rerolls.cost * 2,
+							})
+							.then(() => {
+								props.updateRosterData();
+							})
+							.catch((ex) => {
+								alert(ex.message);
+							});
+					} else {
+						if (props.roster.rerolls > 7) {
+							alert('You cannot have more than (8) Re-rolls.');
+						}
+						if (props.roster.treasury < props.team.rerolls.cost * 2) {
+							alert("You don't have enough gold.");
+						}
 					}
-				}
-				break;
-			case 'cheerleaders':
-				if (props.roster.cheerleaders < 6 && props.roster.treasury >= 10000) {
-					database
-						.collection('rosters')
-						.doc(props.roster.id)
-						.update({
-							...props.roster,
-							cheerleaders: props.roster.cheerleaders + 1,
-							treasury: props.roster.treasury - 10000,
-						})
-						.then(() => {
-							props.updateRosterData();
-						})
-						.catch((ex) => {
-							alert(ex.message);
-						});
-				} else {
-					if (props.roster.cheerleaders > 5) {
-						alert('You cannot hire more than (6) Cheerleaders.');
-					}
-					if (props.roster.treasury < 10000) {
-						alert("You don't have enough gold.");
-					}
-				}
-				break;
-			case 'rerolls':
-				if (
-					props.roster.rerolls < 8 &&
-					props.roster.treasury >= props.team.rerolls.cost * 2
-				) {
-					database
-						.collection('rosters')
-						.doc(props.roster.id)
-						.update({
-							...props.roster,
-							rerolls: props.roster.rerolls + 1,
-							treasury: props.roster.treasury - props.team.rerolls.cost * 2,
-						})
-						.then(() => {
-							props.updateRosterData();
-						})
-						.catch((ex) => {
-							alert(ex.message);
-						});
-				} else {
-					if (props.roster.rerolls > 7) {
-						alert('You cannot have more than (8) Re-rolls.');
-					}
-					if (props.roster.treasury < props.team.rerolls.cost * 2) {
-						alert("You don't have enough gold.");
-					}
-				}
-				break;
-			default:
-				console.log('oops...');
-				break;
+					break;
+				default:
+					console.log('oops...');
+					break;
+			}
 		}
 	};
 
+	// Assess team value
 	const teamValuation = () => {
 		const playerValue = props.roster.players.reduce((acc, cur) => {
 			if (cur.MNG) {
@@ -154,69 +159,103 @@ const InitializeRoster = (props) => {
 		);
 	};
 
+	// Add Dedicated Fans
 	const updateDedicatedFans = (increase) => {
-		database
-			.collection('rosters')
-			.doc(props.roster.id)
-			.update({
-				...props.roster,
-				dedicatedFans: increase
-					? props.roster.dedicatedFans + 1
-					: props.roster.dedicatedFans - 1,
-			})
-			.then(() => {
-				props.updateRosterData();
-			})
-			.catch((ex) => {
-				alert(ex.message);
-			});
+		const message = increase
+			? `Increase fan factor from ${props.roster.dedicatedFans + 1} to ${
+					props.roster.dedicatedFans + 2
+			  }`
+			: `Decrease fan factor from ${props.roster.dedicatedFans + 1} to ${
+					props.roster.dedicatedFans
+			  }`;
+		const confirm = window.confirm(message);
+		if (confirm) {
+			database
+				.collection('rosters')
+				.doc(props.roster.id)
+				.update({
+					...props.roster,
+					dedicatedFans: increase
+						? props.roster.dedicatedFans + 1
+						: props.roster.dedicatedFans - 1,
+				})
+				.then(() => {
+					props.updateRosterData();
+				})
+				.catch((ex) => {
+					alert(ex.message);
+				});
+		}
 	};
 
+	// Treasury Update
 	const [treasury, setTreasury] = React.useState(props.roster.treasury);
 	const updateTreasury = () => {
-		database
-			.collection('rosters')
-			.doc(props.roster.id)
-			.update({ ...props.roster, treasury })
-			.then(() => {
-				props.updateRosterData();
-			})
-			.catch((ex) => {
-				alert(ex.message);
-			});
+		const message = `Update treasury to ${treasury}g?`;
+		const confirm = window.confirm(message);
+		if (confirm) {
+			database
+				.collection('rosters')
+				.doc(props.roster.id)
+				.update({ ...props.roster, treasury })
+				.then(() => {
+					props.updateRosterData();
+				})
+				.catch((ex) => {
+					alert(ex.message);
+				});
+		}
 	};
 
+	// Add League Points
 	const addLeaguePoints = (points, outcome) => {
-		database
-			.collection('rosters')
-			.doc(props.roster.id)
-			.update({
-				...props.roster,
-				leaguePoints: props.roster.leaguePoints + points,
-				record: {
-					win:
-						outcome === 'win'
-							? props.roster.record.win + 1
-							: props.roster.record.win,
-					loss:
-						outcome === 'loss'
-							? props.roster.record.loss + 1
-							: props.roster.record.loss,
-					draw:
-						outcome === 'draw'
-							? props.roster.record.draw + 1
-							: props.roster.record.draw,
-				},
-			})
-			.then(() => {
-				props.updateRosterData();
-			})
-			.catch((ex) => {
-				alert(ex.message);
-			});
+		const message = `Add a ${outcome} to your record?`;
+		const confirm = window.confirm(message);
+		if (confirm) {
+			database
+				.collection('rosters')
+				.doc(props.roster.id)
+				.update({
+					...props.roster,
+					leaguePoints: props.roster.leaguePoints + points,
+					record: {
+						win:
+							outcome === 'win'
+								? props.roster.record.win + 1
+								: props.roster.record.win,
+						loss:
+							outcome === 'loss'
+								? props.roster.record.loss + 1
+								: props.roster.record.loss,
+						draw:
+							outcome === 'draw'
+								? props.roster.record.draw + 1
+								: props.roster.record.draw,
+					},
+				})
+				.then(() => {
+					props.updateRosterData();
+				})
+				.catch((ex) => {
+					alert(ex.message);
+				});
+		}
 	};
 
+	// Hire New Player
 	const [addPlayerModal, setAddPlayerModal] = React.useState(false);
+
+	// Handle Drawer
+	const [selectedPlayer, setSelectedPlayer] = React.useState({});
+	const [playerDetailsDrawer, setPlayerDetailsDrawer] = React.useState(false);
+	const handleDrawerOpen = (player) => {
+		setSelectedPlayer(player);
+		setPlayerDetailsDrawer(true);
+	};
+	const handleDrawerClose = () => {
+		setSelectedPlayer({});
+		setPlayerDetailsDrawer(false);
+	};
 
 	return (
 		<Container className={classes.container}>
@@ -226,30 +265,23 @@ const InitializeRoster = (props) => {
 				open={addPlayerModal}
 				handleClose={() => setAddPlayerModal(false)}
 			/>
+			<PlayerDetailsDrawer
+				open={playerDetailsDrawer}
+				handleOpen={handleDrawerOpen}
+				handleClose={handleDrawerClose}
+				updateRosterData={() => {
+					handleDrawerClose();
+					props.updateRosterData();
+				}}
+				player={selectedPlayer}
+				roster={props.roster}
+			/>
 			<Grid container spacing={3}>
-				<Grid item xs={12} md={12} lg={12}>
-					{props.roster.players
-						.sort((a, b) => {
-							if (a.position.toLowerCase() < b.position.toLowerCase()) {
-								return -1;
-							}
-							if (a.position.toLowerCase() > b.position.toLowerCase()) {
-								return 1;
-							}
-							return 0;
-						})
-						.map((player, index) => (
-							<Player
-								key={player.id}
-								player={player}
-								roster={props.roster}
-								updateRosterData={props.updateRosterData}
-								index={index}
-							/>
-						))}
-					<Typography className={classes.container}>
-						Team Value: {teamValuation()}
-					</Typography>
+				<Grid item xs={12}>
+					<PlayerTable
+						players={props.roster.players}
+						handlePlayerSelect={(player) => handleDrawerOpen(player)}
+					/>
 				</Grid>
 				<Grid item xs={12} md={4} lg={3}>
 					<Card>

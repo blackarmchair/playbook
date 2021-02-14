@@ -127,7 +127,7 @@ const AddPlayer = (props) => {
 							color="primary"
 							className={classes.submit}
 						>
-							Add Skill
+							Hire Player
 						</Button>
 					</form>
 				)}

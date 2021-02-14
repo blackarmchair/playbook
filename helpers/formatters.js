@@ -1,7 +1,9 @@
 export const parseNumber = (number) => {
-	return number.toLocaleString('en-US');
+	if (!!number) return number.toLocaleString('en-US');
+	return 0;
 };
 
 export const commaSpacing = (str) => {
-	return str.split(',').join(', ');
+	if (!!str) return str.split(',').join(', ');
+	return '';
 };

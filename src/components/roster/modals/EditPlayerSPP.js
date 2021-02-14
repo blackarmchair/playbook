@@ -34,6 +34,7 @@ const EditPlayerSPP = (props) => {
 	const [modalStyle] = React.useState(getModalStyle);
 
 	const handleUpdate = (points, source) => {
+		console.log(props.player.SPP, points, source);
 		database
 			.collection('rosters')
 			.doc(props.roster.id)
@@ -48,23 +49,23 @@ const EditPlayerSPP = (props) => {
 							comp:
 								source === 'comp' && props.player.stats
 									? props.player.stats.comp + 1
-									: 0,
+									: 1,
 							int:
 								source === 'int' && props.player.stats
 									? props.player.stats.int + 1
-									: 0,
+									: 1,
 							cas:
 								source === 'cas' && props.player.stats
 									? props.player.stats.cas + 1
-									: 0,
+									: 1,
 							td:
 								source === 'td' && props.player.stats
 									? props.player.stats.td + 1
-									: 0,
+									: 1,
 							mvp:
 								source === 'mvp' && props.player.stats
 									? props.player.stats.mvp + 1
-									: 0,
+									: 1,
 						},
 					},
 				],

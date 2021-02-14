@@ -3,6 +3,7 @@ import { Form } from 'react-final-form';
 import { Switches, TextField } from 'mui-rff';
 import { Modal, Button, makeStyles } from '@material-ui/core';
 import { database } from '../../../../services/firebase';
+import * as formatters from '../../../../helpers/formatters';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -51,10 +52,16 @@ const EditPlayerInjuries = (props) => {
 		props.handleClose();
 	};
 
+	const initialData = {
+		NI: formatters.parseNumber(props.player.NI),
+		MNG: props.player.MNG,
+	};
+
 	const modalBody = (
 		<div style={modalStyle} className={classes.paper}>
 			<Form
 				onSubmit={handleUpdate}
+				initialValues={initialData}
 				render={({ handleSubmit }) => (
 					<form onSubmit={handleSubmit} name="editPlayerInjuries">
 						<TextField

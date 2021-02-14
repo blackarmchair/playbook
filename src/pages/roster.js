@@ -13,6 +13,7 @@ import {
 	Grid,
 	Paper,
 	CircularProgress,
+	Backdrop,
 } from '@material-ui/core';
 import withAuth from '../../helpers/withAuth';
 import CreateRoster from '../components/roster/CreateRoster';
@@ -103,6 +104,10 @@ const useStyles = makeStyles((theme) => ({
 	submit: {
 		margin: theme.spacing(3, 0, 2),
 	},
+	backdrop: {
+		zIndex: theme.zIndex.drawer + 1,
+		color: '#fff',
+	},
 }));
 
 const Roster = () => {
@@ -119,7 +124,6 @@ const Roster = () => {
 	};
 
 	// Get Roster & Team Data
-	const [teamValuation, setTeamValuation] = useState(0);
 	const [roster, setRoster] = useState([]);
 	const [team, setTeam] = React.useState({});
 	useEffect(() => {
@@ -254,6 +258,9 @@ const Roster = () => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<CssBaseline />
+			<Backdrop className={classes.backdrop} open={loading}>
+				<CircularProgress color="inherit" />
+			</Backdrop>
 			<TopBar handleDrawerOpen={handleDrawerOpen} />
 			<SideDrawer open={open} handleDrawerClose={handleDrawerClose} />
 			<main className={classes.content}>
@@ -296,9 +303,7 @@ const Roster = () => {
 										<CreateRoster updateRosterData={updateRosterData} />
 									)}
 								</Paper>
-							) : (
-								<CircularProgress />
-							)}
+							) : null}
 						</Grid>
 					</Grid>
 				</Container>
