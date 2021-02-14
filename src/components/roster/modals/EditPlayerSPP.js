@@ -34,42 +34,46 @@ const EditPlayerSPP = (props) => {
 	const [modalStyle] = React.useState(getModalStyle);
 
 	const handleUpdate = (points, source) => {
-		console.log(props.player.SPP, points, source);
-		database
-			.collection('rosters')
-			.doc(props.roster.id)
-			.update({
-				...props.roster,
-				players: [
-					...props.roster.players.filter((p) => p.id !== props.player.id),
-					{
-						...props.player,
-						SPP: parseInt(props.player.SPP) + parseInt(points),
-						stats: {
-							comp:
-								source === 'comp' && props.player.stats
-									? props.player.stats.comp + 1
-									: 1,
-							int:
-								source === 'int' && props.player.stats
-									? props.player.stats.int + 1
-									: 1,
-							cas:
-								source === 'cas' && props.player.stats
-									? props.player.stats.cas + 1
-									: 1,
-							td:
-								source === 'td' && props.player.stats
-									? props.player.stats.td + 1
-									: 1,
-							mvp:
-								source === 'mvp' && props.player.stats
-									? props.player.stats.mvp + 1
-									: 1,
+		const confirm = window.confirm(
+			`Add (${points}) SPP for a ${source} to ${props.player.name}?`
+		);
+		if (confirm) {
+			database
+				.collection('rosters')
+				.doc(props.roster.id)
+				.update({
+					...props.roster,
+					players: [
+						...props.roster.players.filter((p) => p.id !== props.player.id),
+						{
+							...props.player,
+							SPP: parseInt(props.player.SPP) + parseInt(points),
+							stats: {
+								comp:
+									source === 'comp' && props.player.stats
+										? props.player.stats.comp + 1
+										: 1,
+								int:
+									source === 'int' && props.player.stats
+										? props.player.stats.int + 1
+										: 1,
+								cas:
+									source === 'cas' && props.player.stats
+										? props.player.stats.cas + 1
+										: 1,
+								td:
+									source === 'td' && props.player.stats
+										? props.player.stats.td + 1
+										: 1,
+								mvp:
+									source === 'mvp' && props.player.stats
+										? props.player.stats.mvp + 1
+										: 1,
+							},
 						},
-					},
-				],
-			});
+					],
+				});
+		}
 		props.handleClose();
 	};
 

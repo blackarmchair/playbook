@@ -64,25 +64,30 @@ const EditPlayerSkills = (props) => {
 
 	const handleUpdate = (formData) => {
 		const { skill } = formData;
-		const updatedPlayer = {
-			...props.player,
-			skills: `${props.player.skills},${skill}`,
-			level: props.player.level + 1,
-			SPP: props.player.SPP - sppCost,
-			value:
-				parseInt(props.player.value) +
-				parseInt(ADVANCEMENT_VALUATION[advancementType]),
-		};
-		database
-			.collection('rosters')
-			.doc(props.roster.id)
-			.update({
-				...props.roster,
-				players: [
-					...props.roster.players.filter((p) => p.id !== props.player.id),
-					updatedPlayer,
-				],
-			});
+		const confirm = window.confirm(
+			`Add the "${skill}" skill to ${props.player.name} for ${sppCost} SPP?`
+		);
+		if (confirm) {
+			const updatedPlayer = {
+				...props.player,
+				skills: `${props.player.skills},${skill}`,
+				level: props.player.level + 1,
+				SPP: props.player.SPP - sppCost,
+				value:
+					parseInt(props.player.value) +
+					parseInt(ADVANCEMENT_VALUATION[advancementType]),
+			};
+			database
+				.collection('rosters')
+				.doc(props.roster.id)
+				.update({
+					...props.roster,
+					players: [
+						...props.roster.players.filter((p) => p.id !== props.player.id),
+						updatedPlayer,
+					],
+				});
+		}
 		props.handleClose();
 	};
 
