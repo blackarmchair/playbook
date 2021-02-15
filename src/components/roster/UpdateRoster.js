@@ -404,6 +404,7 @@ const InitializeRoster = (props) => {
 							>
 								Update Treasury
 							</Button>
+							<Typography>Total Team Value: {teamValuation()}</Typography>
 						</CardContent>
 					</Card>
 				</Grid>

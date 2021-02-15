@@ -12,8 +12,6 @@ import {
 	Container,
 	Grid,
 	Paper,
-	CircularProgress,
-	Backdrop,
 } from '@material-ui/core';
 import withAuth from '../../helpers/withAuth';
 import CreateRoster from '../components/roster/CreateRoster';
@@ -21,6 +19,7 @@ import InitializeRoster from '../components/roster/InitializeRoster';
 import UpdateRoster from '../components/roster/UpdateRoster';
 import TopBar from '../components/common/TopBar';
 import SideDrawer from '../components/common/SideDrawer';
+import LoadingOverlay from '../components/common/LoadingOverlay';
 
 const drawerWidth = 240;
 
@@ -258,9 +257,7 @@ const Roster = () => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<CssBaseline />
-			<Backdrop className={classes.backdrop} open={loading}>
-				<CircularProgress color="inherit" />
-			</Backdrop>
+			<LoadingOverlay isLoading={loading} />
 			<TopBar handleDrawerOpen={handleDrawerOpen} />
 			<SideDrawer open={open} handleDrawerClose={handleDrawerClose} />
 			<main className={classes.content}>

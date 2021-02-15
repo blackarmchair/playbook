@@ -18,6 +18,7 @@ import { database } from '../../services/firebase/index';
 import Roster from '../components/roster/Roster';
 import TopBar from '../components/common/TopBar';
 import SideDrawer from '../components/common/SideDrawer';
+import LoadingOverlay from '../components/common/LoadingOverlay';
 
 const drawerWidth = 240;
 
@@ -128,6 +129,7 @@ const League = () => {
 	};
 
 	const [rosters, setRosters] = React.useState([]);
+	const [loading, setLoading] = React.useState(true);
 	React.useEffect(() => {
 		async function fetchRosters() {
 			const snapshot = await database.collection('rosters').get();
@@ -147,6 +149,7 @@ const League = () => {
 				...rosters.find((roster) => roster.owner === doc.id),
 			}));
 			setRosters(data);
+			setLoading(false);
 		}
 		fetchRosters();
 	}, []);
@@ -158,6 +161,7 @@ const League = () => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<CssBaseline />
+			<LoadingOverlay isLoading={loading} />
 			<TopBar handleDrawerOpen={handleDrawerOpen} />
 			<SideDrawer open={open} handleDrawerClose={handleDrawerClose} />
 			<main className={classes.content}>

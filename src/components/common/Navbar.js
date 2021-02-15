@@ -1,9 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 import {
 	ListItem,
 	ListItemIcon,
 	ListItemText,
-	Link,
 	makeStyles,
 } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';

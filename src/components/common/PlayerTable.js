@@ -7,10 +7,21 @@ import {
 	TableContainer,
 	TableHead,
 	TableRow,
+	makeStyles,
 } from '@material-ui/core';
 import * as formatters from '../../../helpers/formatters';
 
+const useStyles = makeStyles((theme) => ({
+	injured: {
+		backgroundColor: theme.palette.secondary.light,
+	},
+	healthy: {
+		backgroundColor: theme.palette.common.white,
+	},
+}));
+
 const PlayerTable = (props) => {
+	const classes = useStyles();
 	return (
 		<TableContainer component={Paper}>
 			<Table>
@@ -38,6 +49,7 @@ const PlayerTable = (props) => {
 						.map((player) => (
 							<TableRow
 								onClick={() => props.handlePlayerSelect(player)}
+								className={player.MNG ? classes.injured : classes.healthy}
 								key={player.id}
 							>
 								<TableCell>{player.jerseyNumber}</TableCell>
