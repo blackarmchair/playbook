@@ -48,28 +48,18 @@ const EditPlayerSPP = (props) => {
 						{
 							...props.player,
 							SPP: parseInt(props.player.SPP) + parseInt(points),
-							stats: {
-								comp:
-									source === 'comp' && props.player.stats
-										? props.player.stats.comp + 1
-										: 1,
-								int:
-									source === 'int' && props.player.stats
-										? props.player.stats.int + 1
-										: 1,
-								cas:
-									source === 'cas' && props.player.stats
-										? props.player.stats.cas + 1
-										: 1,
-								td:
-									source === 'td' && props.player.stats
-										? props.player.stats.td + 1
-										: 1,
-								mvp:
-									source === 'mvp' && props.player.stats
-										? props.player.stats.mvp + 1
-										: 1,
-							},
+							stats: props.player.hasOwnProperty('stats')
+								? {
+										...props.player.stats,
+										[source]: props.player[source] + 1,
+								  }
+								: {
+										comp: source === 'comp' ? 1 : 0,
+										int: source === 'int' ? 1 : 0,
+										cas: source === 'cas' ? 1 : 0,
+										td: source === 'td' ? 1 : 0,
+										mvp: source === 'mvp' ? 1 : 0,
+								  },
 						},
 					],
 				});
