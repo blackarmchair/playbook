@@ -412,7 +412,8 @@ const InitializeRoster = (props) => {
 					<Card>
 						<CardContent>
 							<Typography>
-								League Points: {props.roster.leaguePoints || 0}
+								Record: ({props.roster.record.win}/{props.roster.record.loss}/
+								{props.roster.record.draw}) [{props.roster.leaguePoints || 0}]
 							</Typography>
 							<Button
 								fullWidth
