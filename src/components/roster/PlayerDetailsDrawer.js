@@ -17,6 +17,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import LabelIcon from '@material-ui/icons/Label';
 import CancelIcon from '@material-ui/icons/Cancel';
 import * as formatters from '../../../helpers/formatters';
+import { database } from '../../../services/firebase/index';
 
 import PlayerTable from '../common/PlayerTable';
 import EditPlayerMeta from './modals/EditPlayerMeta';
@@ -58,6 +59,20 @@ const PlayerDetailsDrawer = ({
 	readOnly = false,
 }) => {
 	const classes = useStyles();
+
+	const [playerLevel, setPlayerLevel] = React.useState('');
+	React.useEffect(() => {
+		async function fetchLevels() {
+			const snapshot = await database.collection('levels').get();
+			const data = snapshot.docs
+				.map((doc) => ({ ...doc.data(), id: doc.id }))
+				.find((doc) => parseInt(doc.level) === parseInt(player.level));
+			setPlayerLevel(data.label);
+		}
+		if (player.hasOwnProperty('id')) {
+			fetchLevels();
+		}
+	}, [player]);
 
 	const [playerMetaModal, setPlayerMetaModal] = React.useState(false);
 	const [playerSPPModal, setPlayerSPPModal] = React.useState(false);
@@ -130,8 +145,10 @@ const PlayerDetailsDrawer = ({
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText
-									primary={player.name || '[No Name]'}
-									secondary="Change Player Name / Number"
+									primary="Player Name & Number:"
+									secondary={`#${player.jerseyNumber} ${
+										player.name || '[No Name]'
+									}`}
 								/>
 								{!readOnly && (
 									<ListItemSecondaryAction>
@@ -157,8 +174,8 @@ const PlayerDetailsDrawer = ({
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText
-									primary={formatters.parseNumber(player.value)}
-									secondary="Player Value"
+									primary="Player Value:"
+									secondary={formatters.parseNumber(player.value)}
 								/>
 							</ListItem>
 						</List>
@@ -174,8 +191,8 @@ const PlayerDetailsDrawer = ({
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText
-									primary={formatters.commaSpacing(player.skills)}
-									secondary="Add Skills"
+									primary="Skills:"
+									secondary={formatters.commaSpacing(player.skills)}
 								/>
 								{!readOnly && (
 									<ListItemSecondaryAction>
@@ -200,7 +217,10 @@ const PlayerDetailsDrawer = ({
 										<LabelIcon />
 									</Avatar>
 								</ListItemAvatar>
-								<ListItemText primary={player.SPP} secondary="Edit SPP" />
+								<ListItemText
+									primary="Star Player Points (SPP):"
+									secondary={player.SPP}
+								/>
 								{!readOnly && (
 									<ListItemSecondaryAction>
 										<IconButton
@@ -225,10 +245,10 @@ const PlayerDetailsDrawer = ({
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText
-									primary={`Miss Next Game: ${
+									primary="Update Injury Status:"
+									secondary={`Miss Next Game: ${
 										player.MNG ? 'Yes' : 'No'
 									} | Niggling Injuries: ${player.NI}`}
-									secondary="Update Injury Status"
 								/>
 								{!readOnly && (
 									<ListItemSecondaryAction>
@@ -240,6 +260,20 @@ const PlayerDetailsDrawer = ({
 										</IconButton>
 									</ListItemSecondaryAction>
 								)}
+							</ListItem>
+						</List>
+					</Container>
+				</Grid>
+				<Grid className={classes.gridItem} item xs={12} md={6}>
+					<Container component={Paper} className={classes.gridItemContainer}>
+						<List>
+							<ListItem>
+								<ListItemAvatar>
+									<Avatar>
+										<LabelIcon />
+									</Avatar>
+								</ListItemAvatar>
+								<ListItemText primary="Player Level:" secondary={playerLevel} />
 							</ListItem>
 						</List>
 					</Container>

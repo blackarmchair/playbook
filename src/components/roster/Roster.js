@@ -154,43 +154,6 @@ const Roster = (props) => {
 					/>
 				</List>
 			)}
-			{/*
-				<Grid item xs={12} md={4} lg={3}>
-					<Typography className={classes.container}>
-						Rerolls: {props.roster.rerolls}
-					</Typography>
-				</Grid>
-				<Grid item xs={12} md={4} lg={3}>
-					<Typography className={classes.container}>
-						Dedicated Fans: {props.roster.dedicatedFans + 1}
-					</Typography>
-				</Grid>
-				<Grid item xs={12} md={4} lg={3}>
-					<Typography className={classes.container}>
-						Apothecary: {props.roster.apothecary}
-					</Typography>
-				</Grid>
-				<Grid item xs={12} md={4} lg={3}>
-					<Typography className={classes.container}>
-						Assistant Coaches: {props.roster.assistantCoaches}
-					</Typography>
-				</Grid>
-				<Grid item xs={12} md={4} lg={3}>
-					<Typography className={classes.container}>
-						Cheerleaders: {props.roster.cheerleaders}
-					</Typography>
-				</Grid>
-				<Grid item xs={12} md={4} lg={3}>
-					<Typography className={classes.container}>
-						League Points: {props.roster.leaguePoints}
-					</Typography>
-				</Grid>
-				<Grid item xs={12} md={4} lg={3}>
-					<Typography className={classes.container}>
-						Treasury: {formatters.parseNumber(parseInt(props.roster.treasury))}g
-					</Typography>
-				</Grid>
-				*/}
 		</Container>
 	);
 };

@@ -43,7 +43,7 @@ const AddPlayer = (props) => {
 		return snapshot.docs[0].data();
 	}
 
-	function AddPlayerToRoster(playerData) {
+	function AddPlayerToRoster(playerData, journeymen) {
 		const newPlayer = {
 			...playerData,
 			SPP: 0,
@@ -68,19 +68,34 @@ const AddPlayer = (props) => {
 			.doc(props.roster.id)
 			.update({
 				players: [...props.roster.players, newPlayer],
-				treasury: parseInt(props.roster.treasury) - parseInt(newPlayer.cost),
+				treasury: journeymen
+					? props.roster.treasury
+					: parseInt(props.roster.treasury) - parseInt(newPlayer.cost),
 			});
 	}
 
-	const handleUpdate = async ({ playerId }) => {
+	const handleUpdate = async (formData) => {
 		try {
+			const addingJourneymen = formData.playerId === 'journeymen';
+			const playerId = addingJourneymen ? journeymen().id : formData.playerId;
 			const playerData = await getPlayerData(playerId);
-			AddPlayerToRoster(playerData, props.roster.id);
+			AddPlayerToRoster(playerData, addingJourneymen);
 		} catch (ex) {
 			alert(ex.message);
 		} finally {
 			props.handleClose();
 		}
+	};
+
+	const healthyPlayers = props.roster.players.filter((p) => !p.MNG).length;
+	const journeymen = () => {
+		const linemenCount = Math.max.apply(
+			Math,
+			props.team.players.map((p) => p.max)
+		);
+		return (journeyman = props.team.players.find(
+			(p) => p.max === linemenCount
+		));
 	};
 
 	const modalBody = (
@@ -90,9 +105,9 @@ const AddPlayer = (props) => {
 				render={({ handleSubmit }) => (
 					<form onSubmit={handleSubmit} name="editPlayerSkills">
 						<Field
-							name="type"
+							name="playerId"
 							render={({ input }) => (
-								<Select name="playerId" label="Select Player">
+								<Select name="playerId" label="Select Player" {...input}>
 									{props.team.players.map((player) => {
 										const playerCountOnRoster = props.roster.players.reduce(
 											(acc, cur) => {
@@ -117,6 +132,9 @@ const AddPlayer = (props) => {
 											</MenuItem>
 										);
 									})}
+									<MenuItem value="journeymen" disabled={healthyPlayers >= 11}>
+										Hire Journeymen
+									</MenuItem>
 								</Select>
 							)}
 						/>

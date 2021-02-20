@@ -3,7 +3,7 @@ import Head from 'next/head';
 import {
 	makeStyles,
 	CssBaseline,
-	AppBar,
+	Hidden,
 	Typography,
 	Container,
 	Grid,
@@ -198,12 +198,12 @@ const League = () => {
 												<Typography className={classes.secondaryHeading}>
 													{roster.userData.fname} {roster.userData.lname}
 												</Typography>
-												{window.innerWidth > 1024 && (
+												<Hidden smDown>
 													<Typography className={classes.secondaryHeading}>
 														({roster.record.win}/{roster.record.loss}/
 														{roster.record.draw})
 													</Typography>
-												)}
+												</Hidden>
 											</AccordionSummary>
 											<AccordionDetails classes={{ root: classes.noPadding }}>
 												<Roster roster={roster} />
