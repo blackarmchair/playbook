@@ -1,0 +1,36 @@
+{
+    "name": "Playbook",
+    "short_name": "Playbook",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f4f0ed",
+    "theme_color": "#1d3c7c",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "./BB_logo48.png",
+        "type": "image/svg",
+        "sizes": "48x48"
+      },
+      {
+        "src": "./BB_logo72.png",
+        "type": "image/svg",
+        "sizes": "72x72"
+      },
+      {
+        "src": "./BB_logo96.png",
+        "type": "image/svg",
+        "sizes": "96x96"
+      },
+      {
+        "src": "./BB_logo128.png",
+        "type": "image/svg",
+        "sizes": "128x128"
+      },
+      {
+        "src": "./BB_logo256.png",
+        "type": "image/svg",
+        "sizes": "256x256"
+      }
+    ]
+  }
