@@ -61,6 +61,8 @@ const SignUp = () => {
 		<>
 			<Head>
 				<title>Sign Up</title>
+				<link rel="manifest" href="/manifest.json" />
+				<link rel="apple-touch-icon" href="/logo-96x96.png" />
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<Container component="main" maxWidth="xs">

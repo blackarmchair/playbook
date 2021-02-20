@@ -5,7 +5,8 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"start": "next start"
+		"start": "next start",
+		"server": "next build && NODE_ENV=production node server.js"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^5.13.1",
@@ -13,11 +14,13 @@
 		"@material-ui/icons": "^4.11.2",
 		"clsx": "^1.1.1",
 		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
 		"final-form": "^4.20.1",
 		"firebase": "^7.15.1",
 		"moment": "^2.26.0",
 		"mui-rff": "^3.0.3",
 		"next": "9.4.4",
+		"next-offline": "^5.0.3",
 		"nprogress": "^0.2.0",
 		"react": "16.13.1",
 		"react-dom": "16.13.1",
