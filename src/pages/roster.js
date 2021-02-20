@@ -272,9 +272,10 @@ const Roster = () => {
 									team.hasOwnProperty('players') ? (
 										<>
 											<Typography variant="h5">
-												{roster.name}
 												{!roster.initiated &&
-													`Current Value: ${formatters.parseNumber(
+													`${
+														roster.name
+													} - Current Value: ${formatters.parseNumber(
 														cost.reduce((acc, cur) => acc + cur.cost, 0)
 													)}g`}
 											</Typography>

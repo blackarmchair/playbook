@@ -13,12 +13,29 @@ import {
 	Avatar,
 	makeStyles,
 } from '@material-ui/core';
+
+// Icons
 import EditIcon from '@material-ui/icons/Edit';
 import LabelIcon from '@material-ui/icons/Label';
 import CancelIcon from '@material-ui/icons/Cancel';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+import StarIcon from '@material-ui/icons/Star';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
+import ExposureZeroIcon from '@material-ui/icons/ExposureZero';
+import Filter1Icon from '@material-ui/icons/Filter1';
+import Filter2Icon from '@material-ui/icons/Filter1';
+import Filter3Icon from '@material-ui/icons/Filter1';
+import Filter4Icon from '@material-ui/icons/Filter1';
+import Filter5Icon from '@material-ui/icons/Filter1';
+import Filter6Icon from '@material-ui/icons/Filter1';
+
+// Helpers
 import * as formatters from '../../../helpers/formatters';
 import { database } from '../../../services/firebase/index';
 
+// Custom Components
 import PlayerTable from '../common/PlayerTable';
 import EditPlayerMeta from './modals/EditPlayerMeta';
 import EditPlayerSPP from './modals/EditPlayerSPP';
@@ -27,7 +44,7 @@ import EditPlayerInjuries from './modals/EditPlayerInjuries';
 
 const useStyles = makeStyles((theme) => ({
 	drawer: {
-		backgroundColor: theme.palette.background.paperTransparent,
+		backgroundColor: theme.palette.background.default,
 		padding: theme.spacing(2),
 		[theme.breakpoints.up('sm')]: {
 			width: '75vw',
@@ -45,7 +62,11 @@ const useStyles = makeStyles((theme) => ({
 		height: '100%',
 	},
 	closeDrawerIcon: {
-		color: theme.palette.background.paper,
+		color: theme.palette.secondary.main,
+	},
+	avatar: {
+		color: theme.palette.common.white,
+		backgroundColor: theme.palette.secondary.main,
 	},
 }));
 
@@ -73,6 +94,34 @@ const PlayerDetailsDrawer = ({
 			fetchLevels();
 		}
 	}, [player]);
+
+	const playerLevelIcon = (level) => {
+		switch (level) {
+			case 0:
+				return <ExposureZeroIcon />;
+				break;
+			case 1:
+				return <Filter1Icon />;
+				break;
+			case 2:
+				return <Filter2Icon />;
+				break;
+			case 3:
+				return <Filter3Icon />;
+				break;
+			case 4:
+				return <Filter4Icon />;
+				break;
+			case 5:
+				return <Filter5Icon />;
+				break;
+			case 6:
+				return <Filter6Icon />;
+				break;
+			default:
+				return <ExposureZeroIcon />;
+		}
+	};
 
 	const [playerMetaModal, setPlayerMetaModal] = React.useState(false);
 	const [playerSPPModal, setPlayerSPPModal] = React.useState(false);
@@ -140,8 +189,8 @@ const PlayerDetailsDrawer = ({
 						<List>
 							<ListItem>
 								<ListItemAvatar>
-									<Avatar>
-										<LabelIcon />
+									<Avatar classes={{ root: classes.avatar }}>
+										<AssignmentIndIcon />
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText
@@ -156,7 +205,7 @@ const PlayerDetailsDrawer = ({
 											edge="end"
 											onClick={() => setPlayerMetaModal(true)}
 										>
-											<EditIcon />
+											<EditIcon color="primary" />
 										</IconButton>
 									</ListItemSecondaryAction>
 								)}
@@ -169,8 +218,8 @@ const PlayerDetailsDrawer = ({
 						<List>
 							<ListItem>
 								<ListItemAvatar>
-									<Avatar>
-										<LabelIcon />
+									<Avatar classes={{ root: classes.avatar }}>
+										<AttachMoneyIcon />
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText
@@ -186,8 +235,8 @@ const PlayerDetailsDrawer = ({
 						<List>
 							<ListItem>
 								<ListItemAvatar>
-									<Avatar>
-										<LabelIcon />
+									<Avatar classes={{ root: classes.avatar }}>
+										<FitnessCenterIcon />
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText
@@ -200,7 +249,7 @@ const PlayerDetailsDrawer = ({
 											edge="end"
 											onClick={() => setPlayerSkillsModal(true)}
 										>
-											<EditIcon />
+											<EditIcon color="primary" />
 										</IconButton>
 									</ListItemSecondaryAction>
 								)}
@@ -213,8 +262,8 @@ const PlayerDetailsDrawer = ({
 						<List>
 							<ListItem>
 								<ListItemAvatar>
-									<Avatar>
-										<LabelIcon />
+									<Avatar classes={{ root: classes.avatar }}>
+										<StarIcon />
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText
@@ -227,7 +276,7 @@ const PlayerDetailsDrawer = ({
 											edge="end"
 											onClick={() => setPlayerSPPModal(true)}
 										>
-											<EditIcon />
+											<EditIcon color="primary" />
 										</IconButton>
 									</ListItemSecondaryAction>
 								)}
@@ -240,8 +289,8 @@ const PlayerDetailsDrawer = ({
 						<List>
 							<ListItem>
 								<ListItemAvatar>
-									<Avatar>
-										<LabelIcon />
+									<Avatar classes={{ root: classes.avatar }}>
+										<LocalHospitalIcon />
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText
@@ -256,7 +305,7 @@ const PlayerDetailsDrawer = ({
 											edge="end"
 											onClick={() => setPlayerInjuriesModal(true)}
 										>
-											<EditIcon />
+											<EditIcon color="primary" />
 										</IconButton>
 									</ListItemSecondaryAction>
 								)}
@@ -269,8 +318,8 @@ const PlayerDetailsDrawer = ({
 						<List>
 							<ListItem>
 								<ListItemAvatar>
-									<Avatar>
-										<LabelIcon />
+									<Avatar classes={{ root: classes.avatar }}>
+										{playerLevelIcon(player.level)}
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText primary="Player Level:" secondary={playerLevel} />

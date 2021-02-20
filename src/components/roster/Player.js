@@ -34,18 +34,35 @@ const useStyles = makeStyles((theme) => ({
 	},
 	secondaryHeading: {
 		fontSize: theme.typography.pxToRem(15),
-		color: theme.palette.text.secondary,
 		flexBasis: '33.33%',
 		flexShrink: 0,
 	},
 	list: {
 		width: '100%',
 	},
+	accordion: {
+		'&:nth-of-type(even)': {
+			backgroundColor: theme.palette.primary.main,
+			color: theme.palette.primary.contrastText,
+		},
+		'&:nth-of-type(odd)': {
+			backgroundColor: theme.palette.secondary.main,
+			color: theme.palette.secondary.contrastText,
+		},
+	},
 	accSummary: {
 		flexDirection: window.innerWidth > 1024 ? 'row' : 'column',
 	},
-	noPadding: {
+	accDetails: {
 		padding: 0,
+	},
+	expandIcon: {
+		'&:nth-of-type(even)': {
+			color: theme.palette.primary.contrastText,
+		},
+		'&:nth-of-type(odd)': {
+			color: theme.palette.secondary.contrastText,
+		},
 	},
 }));
 
@@ -61,9 +78,10 @@ const Player = (props) => {
 		<Accordion
 			expanded={expanded === props.player.id}
 			onChange={handleChange(props.player.id)}
+			classes={{ root: classes.accordion }}
 		>
 			<AccordionSummary
-				expandIcon={<ExpandMoreIcon />}
+				expandIcon={<ExpandMoreIcon className={classes.expandIcon} />}
 				aria-controls={`${props.player.id}_content`}
 				id={`${props.player.id}_content`}
 				classes={{
@@ -79,7 +97,7 @@ const Player = (props) => {
 					| PA: {props.player.PA}+ | AV: {props.player.AV}+
 				</Typography>
 			</AccordionSummary>
-			<AccordionDetails classes={{ root: classes.noPadding }}>
+			<AccordionDetails classes={{ root: classes.accDetails }}>
 				<List className={classes.list}>
 					<ListItem>
 						<Hidden smDown>
@@ -89,7 +107,10 @@ const Player = (props) => {
 								</Avatar>
 							</ListItemAvatar>
 						</Hidden>
-						<ListItemText primary="SPP:" secondary={props.player.SPP} />
+						<ListItemText
+							primary="Star Player Points (SPP):"
+							secondary={props.player.SPP}
+						/>
 					</ListItem>
 					<ListItem>
 						<Hidden smDown>

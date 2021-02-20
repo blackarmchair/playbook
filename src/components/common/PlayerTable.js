@@ -8,42 +8,75 @@ import {
 	TableHead,
 	TableRow,
 	makeStyles,
+	withStyles,
 } from '@material-ui/core';
 import * as formatters from '../../../helpers/formatters';
 
-const useStyles = makeStyles((theme) => ({
-	dead: {
-		backgroundColor: theme.palette.secondary.light,
+const useStyles = (props) =>
+	makeStyles((theme) => ({
+		dead: {
+			backgroundColor: theme.palette.secondary.light,
+		},
+		injured: {
+			backgroundColor: theme.palette.error.light,
+		},
+		healthy: {
+			backgroundColor: theme.palette.common.white,
+		},
+	}));
+
+const StyledTableCell = withStyles((theme) => ({
+	head: {
+		backgroundColor: theme.palette.secondary.main,
+		color: theme.palette.secondary.contrastText,
+		cursor: 'pointer',
 	},
-	injured: {
-		backgroundColor: theme.palette.error.light,
+	body: {
+		fontSize: 14,
+		color: theme.palette.primary.contrastText,
+		cursor: 'pointer',
 	},
-	healthy: {
-		backgroundColor: theme.palette.common.white,
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+	root: {
+		'&:nth-of-type(even)': {
+			backgroundColor: theme.palette.primary.main,
+		},
+		'&:nth-of-type(odd)': {
+			backgroundColor: theme.palette.primary.light,
+		},
 	},
-}));
+}))(TableRow);
 
 const PlayerTable = (props) => {
-	const classes = useStyles();
+	const classes = useStyles(props)();
 	return (
 		<TableContainer component={Paper}>
 			<Table>
 				<TableHead>
-					<TableRow>
-						<TableCell>#</TableCell>
-						<TableCell>Player</TableCell>
-						<TableCell>Position</TableCell>
+					{props.showRosterTitle && (
+						<StyledTableRow>
+							<StyledTableCell colSpan={props.minimal ? 3 : 9}>
+								{props.roster.name}
+							</StyledTableCell>
+						</StyledTableRow>
+					)}
+					<StyledTableRow>
+						<StyledTableCell>#</StyledTableCell>
+						<StyledTableCell>Player</StyledTableCell>
+						<StyledTableCell>Position</StyledTableCell>
 						{!props.minimal && (
 							<>
-								<TableCell>MA</TableCell>
-								<TableCell>ST</TableCell>
-								<TableCell>AG</TableCell>
-								<TableCell>PA</TableCell>
-								<TableCell>AV</TableCell>
-								<TableCell>Skills & Traits</TableCell>
+								<StyledTableCell>MA</StyledTableCell>
+								<StyledTableCell>ST</StyledTableCell>
+								<StyledTableCell>AG</StyledTableCell>
+								<StyledTableCell>PA</StyledTableCell>
+								<StyledTableCell>AV</StyledTableCell>
+								<StyledTableCell>Skills & Traits</StyledTableCell>
 							</>
 						)}
-					</TableRow>
+					</StyledTableRow>
 				</TableHead>
 				<TableBody>
 					{props.players
@@ -54,7 +87,7 @@ const PlayerTable = (props) => {
 							return 0;
 						})
 						.map((player) => (
-							<TableRow
+							<StyledTableRow
 								onClick={() => props.handlePlayerSelect(player)}
 								className={
 									player.DEAD
@@ -65,22 +98,22 @@ const PlayerTable = (props) => {
 								}
 								key={player.id}
 							>
-								<TableCell>{player.jerseyNumber}</TableCell>
-								<TableCell>{player.name}</TableCell>
-								<TableCell>{player.position}</TableCell>
+								<StyledTableCell>{player.jerseyNumber}</StyledTableCell>
+								<StyledTableCell>{player.name}</StyledTableCell>
+								<StyledTableCell>{player.position}</StyledTableCell>
 								{!props.minimal && (
 									<>
-										<TableCell>{player.MA}</TableCell>
-										<TableCell>{player.ST}</TableCell>
-										<TableCell>{player.AG}+</TableCell>
-										<TableCell>{player.PA}+</TableCell>
-										<TableCell>{player.AV}+</TableCell>
-										<TableCell>
+										<StyledTableCell>{player.MA}</StyledTableCell>
+										<StyledTableCell>{player.ST}</StyledTableCell>
+										<StyledTableCell>{player.AG}+</StyledTableCell>
+										<StyledTableCell>{player.PA}+</StyledTableCell>
+										<StyledTableCell>{player.AV}+</StyledTableCell>
+										<StyledTableCell>
 											{formatters.commaSpacing(player.skills)}
-										</TableCell>
+										</StyledTableCell>
 									</>
 								)}
-							</TableRow>
+							</StyledTableRow>
 						))}
 				</TableBody>
 			</Table>

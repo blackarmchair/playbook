@@ -271,6 +271,8 @@ const InitializeRoster = (props) => {
 			<Grid container spacing={3}>
 				<Grid item xs={12}>
 					<PlayerTable
+						roster={props.roster}
+						showRosterTitle={true}
 						players={props.roster.players}
 						handlePlayerSelect={(player) => handleDrawerOpen(player)}
 						minimal={true}

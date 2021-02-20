@@ -116,8 +116,9 @@ const useStyles = makeStyles((theme) => ({
 	spacing: {
 		padding: theme.spacing(2),
 	},
-	noPadding: {
+	accDetails: {
 		padding: 0,
+		backgroundColor: theme.palette.background.default,
 	},
 }));
 
@@ -205,7 +206,7 @@ const League = () => {
 													</Typography>
 												</Hidden>
 											</AccordionSummary>
-											<AccordionDetails classes={{ root: classes.noPadding }}>
+											<AccordionDetails classes={{ root: classes.accDetails }}>
 												<Roster roster={roster} />
 											</AccordionDetails>
 										</Accordion>

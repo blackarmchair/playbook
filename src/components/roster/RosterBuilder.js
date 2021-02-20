@@ -10,6 +10,17 @@ import {
 	Avatar,
 	makeStyles,
 } from '@material-ui/core';
+
+// Icons
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import SportsIcon from '@material-ui/icons/Sports';
+import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
+import EventNoteIcon from '@material-ui/icons/EventNote';
+import EventSeatIcon from '@material-ui/icons/EventSeat';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import CasinoIcon from '@material-ui/icons/Casino';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import LabelIcon from '@material-ui/icons/Label';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
@@ -31,16 +42,20 @@ const useStyles = makeStyles((theme) => ({
 			borderBottom: `1px solid ${theme.palette.text.disabled}`,
 		},
 	},
+	avatar: {
+		color: theme.palette.common.white,
+		backgroundColor: theme.palette.secondary.main,
+	},
 }));
 
-const RosterItem = ({ primary, secondary, children }) => {
+const RosterItem = ({ labelIcon, primary, secondary, children }) => {
 	const classes = useStyles();
 	return (
 		<ListItem>
 			<Hidden smDown>
 				<ListItemAvatar>
-					<Avatar>
-						<LabelIcon />
+					<Avatar classes={{ root: classes.avatar }}>
+						{!!labelIcon ? labelIcon : <LabelIcon />}
 					</Avatar>
 				</ListItemAvatar>
 			</Hidden>
@@ -56,83 +71,92 @@ const RosterBuilder = (props) => {
 	return (
 		<List>
 			<RosterItem
+				labelIcon={<CasinoIcon />}
 				primary="Team Re-Rolls"
 				secondary={`${props.roster.name} have (${props.roster.rerolls}) team re-rolls.`}
 			>
 				<IconButton onClick={() => props.buildRoster('rerolls')}>
-					<AddCircleIcon />
+					<AddCircleIcon color="primary" />
 				</IconButton>
 			</RosterItem>
 			<RosterItem
+				labelIcon={<AccessibilityNewIcon />}
 				primary="Cheerleaders"
 				secondary={`${props.roster.name} have (${props.roster.cheerleaders}) cheerleaders.`}
 			>
 				<IconButton onClick={() => props.buildRoster('cheerleaders')}>
-					<AddCircleIcon />
+					<AddCircleIcon color="primary" />
 				</IconButton>
 			</RosterItem>
 			<RosterItem
+				labelIcon={<SportsIcon />}
 				primary="Assistant Coaches"
 				secondary={`${props.roster.name} have (${props.roster.assistantCoaches}) assistant coaches.`}
 			>
 				<IconButton onClick={() => props.buildRoster('assistantCoaches')}>
-					<AddCircleIcon />
+					<AddCircleIcon color="primary" />
 				</IconButton>
 			</RosterItem>
 			<RosterItem
+				labelIcon={<LocalHospitalIcon />}
 				primary="Apothecary"
 				secondary={`${props.roster.name} have (${props.roster.apothecary}) apothecaries.`}
 			>
 				<IconButton onClick={() => props.buildRoster('apothecary')}>
-					<AddCircleIcon />
+					<AddCircleIcon color="primary" />
 				</IconButton>
 			</RosterItem>
 			<RosterItem
+				labelIcon={<EventSeatIcon />}
 				primary="Dedicated Fans"
 				secondary={`${props.roster.name} have (${
 					props.roster.dedicatedFans + 1
 				}) dedicated fans.`}
 			>
 				<IconButton onClick={() => props.updateDedicatedFans(true)}>
-					<AddCircleIcon />
+					<AddCircleIcon color="primary" />
 				</IconButton>
 				<IconButton onClick={() => props.updateDedicatedFans(false)}>
-					<RemoveCircleIcon />
+					<RemoveCircleIcon color="primary" />
 				</IconButton>
 			</RosterItem>
 			<RosterItem
+				labelIcon={<EventNoteIcon />}
 				primary="Record"
 				secondary={`${props.roster.name} have a record of (${props.roster.record.win}/${props.roster.record.loss}/${props.roster.record.draw})`}
 			>
 				<IconButton onClick={() => props.addLeaguePoints(3, 'win')}>
-					<CheckCircleIcon />
+					<CheckCircleIcon color="primary" />
 				</IconButton>
 				<IconButton onClick={() => props.addLeaguePoints(1, 'draw')}>
-					<SwapHorizontalCircleIcon />
+					<SwapHorizontalCircleIcon color="primary" />
 				</IconButton>
 				<IconButton onClick={() => props.addLeaguePoints(0, 'loss')}>
-					<CancelIcon />
+					<CancelIcon color="primary" />
 				</IconButton>
 			</RosterItem>
 			<RosterItem
+				labelIcon={<PersonAddIcon />}
 				primary="Hire A New Player"
 				secondary={`${props.roster.name} currently have (${props.roster.players.length}) players.`}
 			>
 				<IconButton onClick={() => props.setAddPlayerModal()}>
-					<AddCircleIcon />
+					<AddCircleIcon color="primary" />
 				</IconButton>
 			</RosterItem>
 			<RosterItem
+				labelIcon={<AccountBalanceIcon />}
 				primary="Update Treasury"
 				secondary={`${
 					props.roster.name
 				} currently have ${formatters.parseNumber(props.roster.treasury)}g.`}
 			>
 				<IconButton onClick={() => props.setTreasuryModal()}>
-					<EditIcon />
+					<EditIcon color="primary" />
 				</IconButton>
 			</RosterItem>
 			<RosterItem
+				labelIcon={<AttachMoneyIcon />}
 				primary="Team Value"
 				secondary={`${
 					props.roster.name
