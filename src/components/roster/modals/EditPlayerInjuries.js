@@ -35,6 +35,11 @@ const EditPlayerInjuries = (props) => {
 	const [modalStyle] = React.useState(getModalStyle);
 
 	const handleUpdate = (formData) => {
+		const MNG = formData.DEAD
+			? true
+			: formData.MNG !== undefined
+			? formData.MNG
+			: false;
 		database
 			.collection('rosters')
 			.doc(props.roster.id)
@@ -44,8 +49,9 @@ const EditPlayerInjuries = (props) => {
 					...props.roster.players.filter((p) => p.id !== props.player.id),
 					{
 						...props.player,
-						MNG: formData.MNG !== undefined ? formData.MNG : false,
+						MNG,
 						NI: formData.NI,
+						DEAD: formData.DEAD,
 					},
 				],
 			});
@@ -54,7 +60,8 @@ const EditPlayerInjuries = (props) => {
 
 	const initialData = {
 		NI: formatters.parseNumber(props.player.NI),
-		MNG: props.player.MNG,
+		MNG: props.player.DEAD ? true : props.player.MNG,
+		DEAD: props.player.DEAD || false,
 	};
 
 	const modalBody = (
@@ -76,9 +83,14 @@ const EditPlayerInjuries = (props) => {
 							type="number"
 						/>
 						<Switches
-							label="Player to Miss Next Game"
+							label=""
 							name="MNG"
 							data={{ label: 'Miss Next Game', value: props.player.MNG }}
+						/>
+						<Switches
+							label=""
+							name="DEAD"
+							data={{ label: 'Dead', value: props.player.DEAD || false }}
 						/>
 						<Button
 							type="submit"

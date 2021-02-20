@@ -11,6 +11,7 @@ import {
 	ListItemSecondaryAction,
 	IconButton,
 	Avatar,
+	Hidden,
 	makeStyles,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -43,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
 	accSummary: {
 		flexDirection: window.innerWidth > 1024 ? 'row' : 'column',
 	},
+	noPadding: {
+		padding: 0,
+	},
 }));
 
 const Player = (props) => {
@@ -53,173 +57,95 @@ const Player = (props) => {
 		setExpanded(isExpanded ? panel : false);
 	};
 
-	const [playerMetaModal, setPlayerMetaModal] = React.useState(false);
-	const [playerSPPModal, setPlayerSPPModal] = React.useState(false);
-	const [playerSkillsModal, setPlayerSkillsModal] = React.useState(false);
-	const [playerInjuriesModal, setPlayerInjuriesModal] = React.useState(false);
-
 	return (
-		<>
-			<EditPlayerMeta
-				open={playerMetaModal}
-				handleClose={() => {
-					props.updateRosterData();
-					setPlayerMetaModal(false);
+		<Accordion
+			expanded={expanded === props.player.id}
+			onChange={handleChange(props.player.id)}
+		>
+			<AccordionSummary
+				expandIcon={<ExpandMoreIcon />}
+				aria-controls={`${props.player.id}_content`}
+				id={`${props.player.id}_content`}
+				classes={{
+					content: classes.accSummary,
 				}}
-				roster={props.roster}
-				player={props.player}
-			/>
-			<EditPlayerSPP
-				open={playerSPPModal}
-				handleClose={() => {
-					props.updateRosterData();
-					setPlayerSPPModal(false);
-				}}
-				roster={props.roster}
-				player={props.player}
-			/>
-			<EditPlayerSkills
-				open={playerSkillsModal}
-				handleClose={() => {
-					props.updateRosterData();
-					setPlayerSkillsModal(false);
-				}}
-				roster={props.roster}
-				player={props.player}
-			/>
-			<EditPlayerInjuries
-				open={playerInjuriesModal}
-				handleClose={() => {
-					props.updateRosterData();
-					setPlayerInjuriesModal(false);
-				}}
-				roster={props.roster}
-				player={props.player}
-			/>
-			<Accordion
-				expanded={expanded === props.player.id}
-				onChange={handleChange(props.player.id)}
 			>
-				<AccordionSummary
-					expandIcon={<ExpandMoreIcon />}
-					aria-controls={`${props.player.id}_content`}
-					id={`${props.player.id}_content`}
-					classes={{
-						content: classes.accSummary,
-					}}
-				>
-					<Typography className={classes.heading}>
-						#{props.player.jerseyNumber}: {props.player.name || '[No Name]'} (
-						{props.player.position})
-					</Typography>
-					<Typography className={classes.secondaryHeading}>
-						MA: {props.player.MA} | ST: {props.player.ST} | AG:{' '}
-						{props.player.AG}+ | PA: {props.player.PA}+ | AV: {props.player.AV}+
-					</Typography>
-					<Typography className={classes.secondaryHeading}>
-						{formatters.commaSpacing(props.player.skills)}
-					</Typography>
-				</AccordionSummary>
-				<AccordionDetails>
-					<List className={classes.list}>
-						<ListItem>
+				<Typography className={classes.heading}>
+					#{props.player.jerseyNumber}: {props.player.name || '[No Name]'} (
+					{props.player.position})
+				</Typography>
+				<Typography className={classes.secondaryHeading}>
+					MA: {props.player.MA} | ST: {props.player.ST} | AG: {props.player.AG}+
+					| PA: {props.player.PA}+ | AV: {props.player.AV}+
+				</Typography>
+			</AccordionSummary>
+			<AccordionDetails classes={{ root: classes.noPadding }}>
+				<List className={classes.list}>
+					<ListItem>
+						<Hidden smDown>
 							<ListItemAvatar>
 								<Avatar>
 									<LabelIcon />
 								</Avatar>
 							</ListItemAvatar>
-							<ListItemText
-								primary={props.player.name || '[No Name]'}
-								secondary="Change Player Name / Number"
-							/>
-							{!props.readOnly && (
-								<ListItemSecondaryAction>
-									<IconButton
-										edge="end"
-										onClick={() => setPlayerMetaModal(true)}
-									>
-										<EditIcon />
-									</IconButton>
-								</ListItemSecondaryAction>
-							)}
-						</ListItem>
-						<ListItem>
+						</Hidden>
+						<ListItemText primary="SPP:" secondary={props.player.SPP} />
+					</ListItem>
+					<ListItem>
+						<Hidden smDown>
 							<ListItemAvatar>
 								<Avatar>
 									<LabelIcon />
 								</Avatar>
 							</ListItemAvatar>
-							<ListItemText primary={props.player.SPP} secondary="Edit SPP" />
-							{!props.readOnly && (
-								<ListItemSecondaryAction>
-									<IconButton
-										edge="end"
-										onClick={() => setPlayerSPPModal(true)}
-									>
-										<EditIcon />
-									</IconButton>
-								</ListItemSecondaryAction>
-							)}
-						</ListItem>
-						<ListItem>
+						</Hidden>
+						<ListItemText
+							primary="Skills:"
+							secondary={formatters.commaSpacing(props.player.skills)}
+						/>
+					</ListItem>
+					<ListItem>
+						<Hidden smDown>
 							<ListItemAvatar>
 								<Avatar>
 									<LabelIcon />
 								</Avatar>
 							</ListItemAvatar>
-							<ListItemText
-								primary={formatters.commaSpacing(props.player.skills)}
-								secondary="Add Skills"
-							/>
-							{!props.readOnly && (
-								<ListItemSecondaryAction>
-									<IconButton
-										edge="end"
-										onClick={() => setPlayerSkillsModal(true)}
-									>
-										<EditIcon />
-									</IconButton>
-								</ListItemSecondaryAction>
-							)}
-						</ListItem>
-						<ListItem>
+						</Hidden>
+						<ListItemText
+							primary="Miss Next Game:"
+							secondary={props.player.MNG ? 'Yes' : 'No'}
+						/>
+					</ListItem>
+					<ListItem>
+						<Hidden smDown>
 							<ListItemAvatar>
 								<Avatar>
 									<LabelIcon />
 								</Avatar>
 							</ListItemAvatar>
-							<ListItemText
-								primary={`Miss Next Game: ${
-									props.player.MNG ? 'Yes' : 'No'
-								} | Niggling Injuries: ${props.player.NI}`}
-								secondary="Update Injury Status"
-							/>
-							{!props.readOnly && (
-								<ListItemSecondaryAction>
-									<IconButton
-										edge="end"
-										onClick={() => setPlayerInjuriesModal(true)}
-									>
-										<EditIcon />
-									</IconButton>
-								</ListItemSecondaryAction>
-							)}
-						</ListItem>
-						<ListItem>
+						</Hidden>
+						<ListItemText
+							primary="Niggling Injuries"
+							secondary={props.player.NI}
+						/>
+					</ListItem>
+					<ListItem>
+						<Hidden smDown>
 							<ListItemAvatar>
 								<Avatar>
 									<LabelIcon />
 								</Avatar>
 							</ListItemAvatar>
-							<ListItemText
-								primary={formatters.parseNumber(props.player.value)}
-								secondary="Player Value"
-							/>
-						</ListItem>
-					</List>
-				</AccordionDetails>
-			</Accordion>
-		</>
+						</Hidden>
+						<ListItemText
+							primary="Player Value"
+							secondary={`${formatters.parseNumber(props.player.value)}g`}
+						/>
+					</ListItem>
+				</List>
+			</AccordionDetails>
+		</Accordion>
 	);
 };
 

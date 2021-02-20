@@ -18,30 +18,55 @@ const useStyles = makeStyles((theme) => ({
 		paddingLeft: theme.spacing(4),
 		paddingRight: theme.spacing(4),
 	},
+	subdued: {
+		color: theme.palette.text.secondary,
+	},
 }));
 
-function determineStandings(rosterA, rosterB) {
-	const rosterATDs = rosterA.players.reduce(
-		(acc, cur) => (cur.hasOwnProperty('stats') ? acc + parseInt(cur.td) : acc),
-		0
-	);
-	const rosterBTDs = rosterB.players.reduce(
-		(acc, cur) => (cur.hasOwnProperty('stats') ? acc + parseInt(cur.td) : acc),
-		0
-	);
+function sumTDs(roster) {
+	return roster.players.reduce((acc, cur) => {
+		return cur.hasOwnProperty('stats') ? acc + parseInt(cur.stats.td) : acc;
+	}, 0);
+}
+
+function sumCas(roster) {
+	return roster.players.reduce((acc, cur) => {
+		return cur.hasOwnProperty('stats') ? acc + parseInt(cur.stats.cas) : acc;
+	}, 0);
+}
+
+function sortByRecord(rosterA, rosterB) {
 	if (parseInt(rosterA.leaguePoints) < parseInt(rosterB.leaguePoints)) {
 		return 1;
 	}
 	if (parseInt(rosterA.leaguePoints) > parseInt(rosterB.leaguePoints)) {
 		return -1;
 	}
+	return 0;
+}
+
+function sortByTDs(rosterA, rosterB) {
 	if (parseInt(rosterA.leaguePoints) === parseInt(rosterB.leaguePoints)) {
-		if (rosterATDs < rosterBTDs) {
-			return 1;
-		}
-		if (rosterATDs > rosterBTDs) {
-			return -1;
-		}
+		const rosterATDs = sumTDs(rosterA);
+		const rosterBTDs = sumTDs(rosterB);
+		if (rosterATDs < rosterBTDs) return 1;
+		if (rosterATDs > rosterBTDs) return -1;
+	}
+	return 0;
+}
+
+function sortByCAS(rosterA, rosterB) {
+	const rosterATDs = sumTDs(rosterA);
+	const rosterBTDs = sumTDs(rosterB);
+
+	if (
+		rosterATDs === rosterBTDs &&
+		parseInt(rosterA.leaguePoints) === parseInt(rosterB.leaguePoints)
+	) {
+		const rosterACas = sumCas(rosterA);
+		const rosterBCas = sumCas(rosterB);
+		if (rosterACas < rosterBCas) return 1;
+		if (rosterACas > rosterBCas) return -1;
 	}
 	return 0;
 }
@@ -72,13 +97,14 @@ const LeagueStandings = ({ rosters }) => {
 								<TableCell>Coach</TableCell>
 								<TableCell>Team</TableCell>
 								<TableCell>Record</TableCell>
-								<TableCell>League Points</TableCell>
 							</TableRow>
 						</TableHead>
 						<TableBody>
 							{rosters
 								.filter((roster) => filterDelinquents(roster, currentWeek))
-								.sort(determineStandings)
+								.sort(sortByRecord)
+								.sort(sortByTDs)
+								.sort(sortByCAS)
 								.map((roster, ind) => (
 									<TableRow>
 										<TableCell>{ind + 1}</TableCell>
@@ -90,26 +116,28 @@ const LeagueStandings = ({ rosters }) => {
 											({roster.record.win}/{roster.record.loss}/
 											{roster.record.draw})
 										</TableCell>
-										<TableCell>{roster.leaguePoints}</TableCell>
 									</TableRow>
 								))}
 							{rosters
 								.filter((roster) => !filterDelinquents(roster, currentWeek))
-								.sort(determineStandings)
+								.sort(sortByRecord)
+								.sort(sortByTDs)
+								.sort(sortByCAS)
 								.map((roster, ind, self) => (
 									<TableRow>
-										<TableCell>
+										<TableCell className={classes.subdued}>
 											{rosters.length - (self.length - (ind + 1))}
 										</TableCell>
-										<TableCell>
+										<TableCell className={classes.subdued}>
 											{roster.userData.fname} {roster.userData.lname}
 										</TableCell>
-										<TableCell>{roster.name}</TableCell>
-										<TableCell>
+										<TableCell className={classes.subdued}>
+											{roster.name}
+										</TableCell>
+										<TableCell className={classes.subdued}>
 											({roster.record.win}/{roster.record.loss}/
 											{roster.record.draw})
 										</TableCell>
-										<TableCell>{roster.leaguePoints}</TableCell>
 									</TableRow>
 								))}
 						</TableBody>

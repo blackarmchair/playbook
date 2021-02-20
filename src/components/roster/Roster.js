@@ -1,5 +1,15 @@
 import React from 'react';
-import { Container, makeStyles, Typography, Grid } from '@material-ui/core';
+import {
+	Container,
+	makeStyles,
+	List,
+	ListItem,
+	ListItemAvatar,
+	ListItemText,
+	Avatar,
+	Hidden,
+} from '@material-ui/core';
+import LabelIcon from '@material-ui/icons/Label';
 import firebase from 'firebase/app';
 import { database } from '../../../services/firebase/index';
 import * as formatters from '../../../helpers/formatters';
@@ -9,7 +19,33 @@ const useStyles = makeStyles((theme) => ({
 	container: {
 		margin: theme.spacing(3, 0, 2),
 	},
+	layout: {
+		[theme.breakpoints.down('sm')]: {
+			position: 'initial',
+			transform: 'initial',
+			display: 'flex',
+			flexDirection: 'row',
+			justifyContent: 'flex-end',
+			borderBottom: `1px solid ${theme.palette.text.disabled}`,
+		},
+	},
 }));
+
+const RosterItem = ({ primary, secondary, children }) => {
+	const classes = useStyles();
+	return (
+		<ListItem>
+			<Hidden smDown>
+				<ListItemAvatar>
+					<Avatar>
+						<LabelIcon />
+					</Avatar>
+				</ListItemAvatar>
+			</Hidden>
+			<ListItemText primary={primary} secondary={secondary} />
+		</ListItem>
+	);
+};
 
 const Roster = (props) => {
 	const classes = useStyles();
@@ -77,14 +113,48 @@ const Roster = (props) => {
 						readOnly={true}
 					/>
 				))}
-			<Grid container spacing={3}>
-				<Grid item xs={12} md={4} lg={3}>
-					{team.hasOwnProperty('name') && (
-						<Typography className={classes.container}>
-							Team Value: {teamValuation()}
-						</Typography>
-					)}
-				</Grid>
+
+			{team.hasOwnProperty('name') && (
+				<List>
+					<RosterItem
+						primary="Team Re-Rolls:"
+						secondary={`${props.roster.name} have (${props.roster.rerolls}) team re-rolls.`}
+					/>
+					<RosterItem
+						primary="Cheerleaders:"
+						secondary={`${props.roster.name} have (${props.roster.cheerleaders}) cheerleaders.`}
+					/>
+					<RosterItem
+						primary="Assistant Coaches:"
+						secondary={`${props.roster.name} have (${props.roster.assistantCoaches}) assistant coaches.`}
+					/>
+					<RosterItem
+						primary="Apothecaries:"
+						secondary={`${props.roster.name} have (${props.roster.apothecary}) apothecaries.`}
+					/>
+					<RosterItem
+						primary="Dedicated Fans:"
+						secondary={`${props.roster.name} have (${
+							props.roster.dedicatedFans + 1
+						}) dedicated fans.`}
+					/>
+					<RosterItem
+						primary="Record:"
+						secondary={`(${props.roster.record.win}/${props.roster.record.loss}/${props.roster.record.draw})`}
+					/>
+					<RosterItem
+						primary="Treasury:"
+						secondary={`${formatters.parseNumber(
+							parseInt(props.roster.treasury)
+						)}g.`}
+					/>
+					<RosterItem
+						primary="Team Value:"
+						secondary={`${formatters.parseNumber(teamValuation())}g.`}
+					/>
+				</List>
+			)}
+			{/*
 				<Grid item xs={12} md={4} lg={3}>
 					<Typography className={classes.container}>
 						Rerolls: {props.roster.rerolls}
@@ -92,7 +162,7 @@ const Roster = (props) => {
 				</Grid>
 				<Grid item xs={12} md={4} lg={3}>
 					<Typography className={classes.container}>
-						Dedicated Fans: {props.roster.dedicatedFans}
+						Dedicated Fans: {props.roster.dedicatedFans + 1}
 					</Typography>
 				</Grid>
 				<Grid item xs={12} md={4} lg={3}>
@@ -120,7 +190,7 @@ const Roster = (props) => {
 						Treasury: {formatters.parseNumber(parseInt(props.roster.treasury))}g
 					</Typography>
 				</Grid>
-			</Grid>
+				*/}
 		</Container>
 	);
 };
