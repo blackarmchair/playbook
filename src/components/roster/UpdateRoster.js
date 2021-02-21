@@ -218,6 +218,12 @@ const InitializeRoster = (props) => {
 								? props.roster.record.draw + 1
 								: props.roster.record.draw,
 					},
+					players: props.roster.players
+						.filter((player) => !player.journeyman)
+						.map((player) => ({
+							...player,
+							MNG: player.DEAD ? true : false,
+						})),
 				})
 				.then(() => {
 					props.updateRosterData();

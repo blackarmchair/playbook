@@ -43,7 +43,7 @@ const AddPlayer = (props) => {
 		return snapshot.docs[0].data();
 	}
 
-	function AddPlayerToRoster(playerData, journeymen) {
+	function AddPlayerToRoster(playerData, addingJourneymen) {
 		const newPlayer = {
 			...playerData,
 			SPP: 0,
@@ -51,6 +51,7 @@ const AddPlayer = (props) => {
 			id: `${new Date().getTime()}`,
 			jerseyNumber: 0,
 			MNG: false,
+			DEAD: false,
 			NI: 0,
 			level: 0,
 			roster: props.roster.id,
@@ -63,12 +64,22 @@ const AddPlayer = (props) => {
 				td: 0,
 			},
 		};
+		const journeymen = addingJourneymen
+			? Array.from(Array(11 - healthyPlayers).keys()).map((key) => ({
+					...newPlayer,
+					name: `Nameless, faceless, chump #${key}`,
+					jerseyNumber: `10${key}`,
+					journeyman: true,
+			  }))
+			: [];
 		database
 			.collection('rosters')
 			.doc(props.roster.id)
 			.update({
-				players: [...props.roster.players, newPlayer],
-				treasury: journeymen
+				players: addingJourneymen
+					? [...props.roster.players, ...journeymen]
+					: [...props.roster.players, newPlayer],
+				treasury: addingJourneymen
 					? props.roster.treasury
 					: parseInt(props.roster.treasury) - parseInt(newPlayer.cost),
 			});
@@ -93,9 +104,7 @@ const AddPlayer = (props) => {
 			Math,
 			props.team.players.map((p) => p.max)
 		);
-		return (journeyman = props.team.players.find(
-			(p) => p.max === linemenCount
-		));
+		return props.team.players.find((p) => p.max === linemenCount);
 	};
 
 	const modalBody = (
