@@ -149,7 +149,9 @@ const RosterBuilder = (props) => {
 				primary="Update Treasury"
 				secondary={`${
 					props.roster.name
-				} currently have ${formatters.parseNumber(props.roster.treasury)}g.`}
+				} currently have ${formatters.parseNumber(
+					parseInt(props.roster.treasury)
+				)}g.`}
 			>
 				<IconButton onClick={() => props.setTreasuryModal()}>
 					<EditIcon color="primary" />
