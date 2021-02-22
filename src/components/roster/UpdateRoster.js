@@ -273,7 +273,7 @@ const InitializeRoster = (props) => {
 	};
 
 	return (
-		<Container className={classes.container}>
+		<>
 			<AddPlayer
 				roster={props.roster}
 				team={props.team}
@@ -298,29 +298,25 @@ const InitializeRoster = (props) => {
 				roster={props.roster}
 				firePlayer={(player) => firePlayer(player)}
 			/>
-			<Grid container spacing={3}>
-				<Grid item xs={12}>
-					<PlayerTable
-						roster={props.roster}
-						showRosterTitle={true}
-						players={props.roster.players}
-						handlePlayerSelect={(player) => handleDrawerOpen(player)}
-						minimal={true}
-					/>
-				</Grid>
-				<Grid item xs={12}>
-					<RosterBuilder
-						teamValue={teamValuation}
-						roster={props.roster}
-						buildRoster={(item) => buildRoster(item)}
-						updateDedicatedFans={(direction) => updateDedicatedFans(direction)}
-						addLeaguePoints={(number, label) => addLeaguePoints(number, label)}
-						setAddPlayerModal={() => setAddPlayerModal(true)}
-						setTreasuryModal={() => setTreasuryModal(true)}
-					/>
-				</Grid>
-			</Grid>
-		</Container>
+			<PlayerTable
+				roster={props.roster}
+				showRosterTitle={true}
+				players={props.roster.players}
+				handlePlayerSelect={(player) => handleDrawerOpen(player)}
+				minimal={true}
+			/>
+			<Container className={classes.container}>
+				<RosterBuilder
+					teamValue={teamValuation}
+					roster={props.roster}
+					buildRoster={(item) => buildRoster(item)}
+					updateDedicatedFans={(direction) => updateDedicatedFans(direction)}
+					addLeaguePoints={(number, label) => addLeaguePoints(number, label)}
+					setAddPlayerModal={() => setAddPlayerModal(true)}
+					setTreasuryModal={() => setTreasuryModal(true)}
+				/>
+			</Container>
+		</>
 	);
 };
 
