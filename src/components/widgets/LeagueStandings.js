@@ -31,6 +31,9 @@ function sumTDs(roster) {
 
 function sumCas(roster) {
 	return roster.players.reduce((acc, cur) => {
+		console.log(
+			cur.hasOwnProperty('stats') && isNaN(parseInt(cur.stats.cas)) ? cur : null
+		);
 		return cur.hasOwnProperty('stats') ? acc + parseInt(cur.stats.cas) : acc;
 	}, 0);
 }

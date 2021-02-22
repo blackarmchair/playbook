@@ -64,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
 			color: theme.palette.secondary.contrastText,
 		},
 	},
+	whiteText: {
+		color: theme.palette.common.white,
+	},
 }));
 
 const Player = (props) => {
@@ -110,6 +113,10 @@ const Player = (props) => {
 						<ListItemText
 							primary="Star Player Points (SPP):"
 							secondary={props.player.SPP}
+							classes={{
+								primary: classes.whiteText,
+								secondary: classes.whiteText,
+							}}
 						/>
 					</ListItem>
 					<ListItem>
@@ -123,6 +130,10 @@ const Player = (props) => {
 						<ListItemText
 							primary="Skills:"
 							secondary={formatters.commaSpacing(props.player.skills)}
+							classes={{
+								primary: classes.whiteText,
+								secondary: classes.whiteText,
+							}}
 						/>
 					</ListItem>
 					<ListItem>
@@ -136,6 +147,10 @@ const Player = (props) => {
 						<ListItemText
 							primary="Miss Next Game:"
 							secondary={props.player.MNG ? 'Yes' : 'No'}
+							classes={{
+								primary: classes.whiteText,
+								secondary: classes.whiteText,
+							}}
 						/>
 					</ListItem>
 					<ListItem>
@@ -149,6 +164,10 @@ const Player = (props) => {
 						<ListItemText
 							primary="Niggling Injuries"
 							secondary={props.player.NI}
+							classes={{
+								primary: classes.whiteText,
+								secondary: classes.whiteText,
+							}}
 						/>
 					</ListItem>
 					<ListItem>
@@ -162,6 +181,10 @@ const Player = (props) => {
 						<ListItemText
 							primary="Player Value"
 							secondary={`${formatters.parseNumber(props.player.value)}g`}
+							classes={{
+								primary: classes.whiteText,
+								secondary: classes.whiteText,
+							}}
 						/>
 					</ListItem>
 				</List>

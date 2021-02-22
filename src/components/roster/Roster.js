@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
 			borderBottom: `1px solid ${theme.palette.text.disabled}`,
 		},
 	},
+	whiteText: {
+		color: theme.palette.common.white,
+	},
 }));
 
 const RosterItem = ({ primary, secondary, children }) => {

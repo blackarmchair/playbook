@@ -51,7 +51,7 @@ const EditPlayerSPP = (props) => {
 							stats: props.player.hasOwnProperty('stats')
 								? {
 										...props.player.stats,
-										[source]: props.player[source] + 1,
+										[source]: parseInt(props.player.stats[source]) + 1,
 								  }
 								: {
 										comp: source === 'comp' ? 1 : 0,
