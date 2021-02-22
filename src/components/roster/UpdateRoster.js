@@ -237,6 +237,29 @@ const InitializeRoster = (props) => {
 	// Hire New Player
 	const [addPlayerModal, setAddPlayerModal] = React.useState(false);
 
+	// Fire a player
+	const firePlayer = (firedPlayer) => {
+		const message = `Are you sure you want to fire ${firedPlayer.name}? This action cannot be undone.`;
+		const confirm = window.confirm(message);
+		if (confirm) {
+			database
+				.collection('rosters')
+				.doc(props.roster.id)
+				.update({
+					...props.roster,
+					players: props.roster.players.filter(
+						(player) => player.id !== firedPlayer.id
+					),
+				})
+				.then(() => {
+					props.updateRosterData();
+				})
+				.catch((ex) => {
+					alert(ex.message);
+				});
+		}
+	};
+
 	// Handle Drawer
 	const [selectedPlayer, setSelectedPlayer] = React.useState({});
 	const [playerDetailsDrawer, setPlayerDetailsDrawer] = React.useState(false);
@@ -273,6 +296,7 @@ const InitializeRoster = (props) => {
 				}}
 				player={selectedPlayer}
 				roster={props.roster}
+				firePlayer={(player) => firePlayer(player)}
 			/>
 			<Grid container spacing={3}>
 				<Grid item xs={12}>

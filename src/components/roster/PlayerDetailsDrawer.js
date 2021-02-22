@@ -16,7 +16,7 @@ import {
 
 // Icons
 import EditIcon from '@material-ui/icons/Edit';
-import LabelIcon from '@material-ui/icons/Label';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import CancelIcon from '@material-ui/icons/Cancel';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
@@ -77,6 +77,7 @@ const PlayerDetailsDrawer = ({
 	player,
 	roster,
 	updateRosterData,
+	firePlayer,
 	readOnly = false,
 }) => {
 	const classes = useStyles();
@@ -323,6 +324,27 @@ const PlayerDetailsDrawer = ({
 									</Avatar>
 								</ListItemAvatar>
 								<ListItemText primary="Player Level:" secondary={playerLevel} />
+							</ListItem>
+						</List>
+					</Container>
+				</Grid>
+				<Grid className={classes.gridItem} item xs={12} md={6}>
+					<Container component={Paper} className={classes.gridItemContainer}>
+						<List>
+							<ListItem>
+								<ListItemAvatar>
+									<Avatar classes={{ root: classes.avatar }}>
+										<HighlightOffIcon />
+									</Avatar>
+								</ListItemAvatar>
+								<ListItemText primary="Fire Player" />
+								{!readOnly && (
+									<ListItemSecondaryAction>
+										<IconButton edge="end" onClick={() => firePlayer(player)}>
+											<HighlightOffIcon color="primary" />
+										</IconButton>
+									</ListItemSecondaryAction>
+								)}
 							</ListItem>
 						</List>
 					</Container>
