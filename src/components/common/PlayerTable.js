@@ -7,6 +7,7 @@ import {
 	TableContainer,
 	TableHead,
 	TableRow,
+	Hidden,
 	makeStyles,
 	withStyles,
 } from '@material-ui/core';
@@ -57,25 +58,21 @@ const PlayerTable = (props) => {
 				<TableHead>
 					{props.showRosterTitle && (
 						<StyledTableRow>
-							<StyledTableCell colSpan={props.minimal ? 3 : 9}>
-								{props.roster.name}
-							</StyledTableCell>
+							<StyledTableCell colSpan={9}>{props.roster.name}</StyledTableCell>
 						</StyledTableRow>
 					)}
 					<StyledTableRow>
 						<StyledTableCell>#</StyledTableCell>
 						<StyledTableCell>Player</StyledTableCell>
 						<StyledTableCell>Position</StyledTableCell>
-						{!props.minimal && (
-							<>
-								<StyledTableCell>MA</StyledTableCell>
-								<StyledTableCell>ST</StyledTableCell>
-								<StyledTableCell>AG</StyledTableCell>
-								<StyledTableCell>PA</StyledTableCell>
-								<StyledTableCell>AV</StyledTableCell>
-								<StyledTableCell>Skills & Traits</StyledTableCell>
-							</>
-						)}
+						<Hidden smDown>
+							<StyledTableCell>MA</StyledTableCell>
+							<StyledTableCell>ST</StyledTableCell>
+							<StyledTableCell>AG</StyledTableCell>
+							<StyledTableCell>PA</StyledTableCell>
+							<StyledTableCell>AV</StyledTableCell>
+							<StyledTableCell>Skills & Traits</StyledTableCell>
+						</Hidden>
 					</StyledTableRow>
 				</TableHead>
 				<TableBody>
@@ -101,18 +98,16 @@ const PlayerTable = (props) => {
 								<StyledTableCell>{player.jerseyNumber}</StyledTableCell>
 								<StyledTableCell>{player.name}</StyledTableCell>
 								<StyledTableCell>{player.position}</StyledTableCell>
-								{!props.minimal && (
-									<>
-										<StyledTableCell>{player.MA}</StyledTableCell>
-										<StyledTableCell>{player.ST}</StyledTableCell>
-										<StyledTableCell>{player.AG}+</StyledTableCell>
-										<StyledTableCell>{player.PA}+</StyledTableCell>
-										<StyledTableCell>{player.AV}+</StyledTableCell>
-										<StyledTableCell>
-											{formatters.commaSpacing(player.skills)}
-										</StyledTableCell>
-									</>
-								)}
+								<Hidden smDown>
+									<StyledTableCell>{player.MA}</StyledTableCell>
+									<StyledTableCell>{player.ST}</StyledTableCell>
+									<StyledTableCell>{player.AG}+</StyledTableCell>
+									<StyledTableCell>{player.PA}+</StyledTableCell>
+									<StyledTableCell>{player.AV}+</StyledTableCell>
+									<StyledTableCell>
+										{formatters.commaSpacing(player.skills)}
+									</StyledTableCell>
+								</Hidden>
 							</StyledTableRow>
 						))}
 				</TableBody>

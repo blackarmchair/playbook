@@ -8,69 +8,90 @@ import {
 	ListItem,
 	ListItemAvatar,
 	ListItemText,
-	ListItemSecondaryAction,
-	IconButton,
 	Avatar,
 	Hidden,
 	makeStyles,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import LabelIcon from '@material-ui/icons/Label';
-import EditIcon from '@material-ui/icons/Edit';
-import EditPlayerMeta from './modals/EditPlayerMeta';
-import EditPlayerSPP from './modals/EditPlayerSPP';
-import EditPlayerSkills from './modals/EditPlayerSkills';
-import EditPlayerInjuries from './modals/EditPlayerInjuries';
+import { database } from '../../../services/firebase/index';
 import * as formatters from '../../../helpers/formatters';
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		width: '100%',
-	},
-	heading: {
-		fontSize: theme.typography.pxToRem(15),
-		flexBasis: '33.33%',
-		flexShrink: 0,
-	},
-	secondaryHeading: {
-		fontSize: theme.typography.pxToRem(15),
-		flexBasis: '33.33%',
-		flexShrink: 0,
-	},
-	list: {
-		width: '100%',
-	},
-	accordion: {
-		'&:nth-of-type(even)': {
-			backgroundColor: theme.palette.primary.main,
-			color: theme.palette.primary.contrastText,
+const useStyles = (props) =>
+	makeStyles((theme) => ({
+		root: {
+			width: '100%',
 		},
-		'&:nth-of-type(odd)': {
-			backgroundColor: theme.palette.secondary.main,
-			color: theme.palette.secondary.contrastText,
+		heading: {
+			fontSize: theme.typography.pxToRem(15),
+			flexBasis: '33.33%',
+			flexShrink: 0,
 		},
-	},
-	accSummary: {
-		flexDirection: window.innerWidth > 1024 ? 'row' : 'column',
-	},
-	accDetails: {
-		padding: 0,
-	},
-	expandIcon: {
-		'&:nth-of-type(even)': {
-			color: theme.palette.primary.contrastText,
+		secondaryHeading: {
+			fontSize: theme.typography.pxToRem(15),
+			flexBasis: '33.33%',
+			flexShrink: 0,
 		},
-		'&:nth-of-type(odd)': {
-			color: theme.palette.secondary.contrastText,
+		list: {
+			width: '100%',
 		},
-	},
-	whiteText: {
-		color: theme.palette.common.white,
-	},
-}));
+		accordion: () => ({
+			'&:nth-of-type(even)': {
+				backgroundColor:
+					props.player.MNG || props.player.DEAD
+						? theme.palette.background.default
+						: theme.palette.primary.main,
+				color:
+					props.player.MNG || props.player.DEAD
+						? theme.palette.text.disabled
+						: theme.palette.primary.contrastText,
+			},
+			'&:nth-of-type(odd)': {
+				backgroundColor:
+					props.player.MNG || props.player.DEAD
+						? theme.palette.background.default
+						: theme.palette.primary.light,
+				color:
+					props.player.MNG || props.player.DEAD
+						? theme.palette.text.disabled
+						: theme.palette.primary.contrastText,
+			},
+		}),
+		accSummary: {
+			flexDirection: window.innerWidth > 1024 ? 'row' : 'column',
+		},
+		accDetails: {
+			padding: 0,
+		},
+		expandIcon: {
+			'&:nth-of-type(even)': {
+				color: theme.palette.primary.contrastText,
+			},
+			'&:nth-of-type(odd)': {
+				color: theme.palette.secondary.contrastText,
+			},
+		},
+		whiteText: {
+			color: theme.palette.common.white,
+		},
+	}));
 
 const Player = (props) => {
-	const classes = useStyles();
+	const classes = useStyles(props)();
+
+	const [playerLevel, setPlayerLevel] = React.useState('');
+	React.useEffect(() => {
+		async function fetchLevels() {
+			const snapshot = await database.collection('levels').get();
+			const data = snapshot.docs
+				.map((doc) => ({ ...doc.data(), id: doc.id }))
+				.find((doc) => parseInt(doc.level) === parseInt(props.player.level));
+			setPlayerLevel(data.label);
+		}
+		if (props.player.hasOwnProperty('id')) {
+			fetchLevels();
+		}
+	}, []);
 
 	const [expanded, setExpanded] = React.useState(false);
 	const handleChange = (panel) => (event, isExpanded) => {
@@ -92,8 +113,13 @@ const Player = (props) => {
 				}}
 			>
 				<Typography className={classes.heading}>
-					#{props.player.jerseyNumber}: {props.player.name || '[No Name]'} (
-					{props.player.position})
+					<strong>
+						#{props.player.jerseyNumber}: {props.player.name || '[No Name]'}
+					</strong>
+					<br />
+					{props.player.position}
+					<br />
+					{playerLevel}
 				</Typography>
 				<Typography className={classes.secondaryHeading}>
 					MA: {props.player.MA} | ST: {props.player.ST} | AG: {props.player.AG}+
